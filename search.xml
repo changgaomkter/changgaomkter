@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>linear System</title>
+      <link href="/2023/07/01/linear-System/"/>
+      <url>/2023/07/01/linear-System/</url>
+      
+        <content type="html"><![CDATA[<h2 id="introduction-to-design-of-system">Introduction to Design ofSystem</h2><ul><li>Performance Specification(性能规范)</li></ul><h3 id="time-domain-and-frequency-domain">Time domain and Frequencydomain</h3><iframe src="//player.bilibili.com/player.html?aid=763994121&bvid=BV1zr4y1C7Pv&cid=434388964&page=1" width="100%" height="300px" frameborder="0" loading="lazy" allowfullscreen></iframe><h4 id="example">Example:</h4><p>Start with a simple sinusoidal signal. Frequency 5Hz, period 0.2s,amplitude 5.(正弦信号，频率5Hz，周期0.2s，幅度5)<br /><span class="math display">\[x(t)=5\sin(2 \pi*5t)\]</span></p><figure><imgsrc="https://cdn.staticaly.com/gh/waterkingest/image_bed@master/20230701/image.gany1okfxj4.webp"alt="Time domain image" /><figcaption aria-hidden="true">Time domain image</figcaption></figure><figure><imgsrc="https://cdn.staticaly.com/gh/waterkingest/image_bed@master/20230701/image.3rsupco66a60.webp"alt="Frequency domain image" /><figcaption aria-hidden="true">Frequency domain image</figcaption></figure><figure><imgsrc="https://cdn.staticaly.com/gh/waterkingest/image_bed@master/20230701/image.2gpw60dti3s0.webp"alt="The relationship between Time domain and frequency domain" /><figcaption aria-hidden="true">The relationship between Time domain andfrequency domain</figcaption></figure><figure><imgsrc="https://upload.wikimedia.org/wikipedia/commons/7/72/Fourier_transform_time_and_frequency_domains_%28small%29.gif"alt="Wiki" /><figcaption aria-hidden="true">Wiki</figcaption></figure><h3 id="fourier-transform"><strong>Fourier Transform</strong></h3><p><span class="math display">\[\begin{array}{c}X_{k}=\sum_{n=0}^{N-1} x_{n} \cdot e^{-i 2 \pi k n / N} \\\\x_{n}=\frac{1}{N} \sum_{k=0}^{N-1} X_{k} \cdot e^{i 2 \pi k n / N}\end{array}\]</span></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Study </tag>
+            
+            <tag> Linear System </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Pygame(1)</title>
       <link href="/2022/12/23/Pygame-1/"/>
       <url>/2022/12/23/Pygame-1/</url>
@@ -20,9 +47,9 @@
       
         <tags>
             
-            <tag> Study </tag>
-            
             <tag> Python </tag>
+            
+            <tag> Study </tag>
             
             <tag> Pygame </tag>
             
@@ -296,9 +323,9 @@
       
         <tags>
             
-            <tag> Study </tag>
-            
             <tag> Python </tag>
+            
+            <tag> Study </tag>
             
             <tag> algorithm </tag>
             
@@ -327,9 +354,9 @@
       
         <tags>
             
-            <tag> Study </tag>
-            
             <tag> Python </tag>
+            
+            <tag> Study </tag>
             
             <tag> algorithm </tag>
             
@@ -356,9 +383,9 @@
       
         <tags>
             
-            <tag> Study </tag>
-            
             <tag> Python </tag>
+            
+            <tag> Study </tag>
             
             <tag> DJango </tag>
             
@@ -387,9 +414,9 @@
       
         <tags>
             
-            <tag> Study </tag>
-            
             <tag> Python </tag>
+            
+            <tag> Study </tag>
             
             <tag> DJango </tag>
             
@@ -462,9 +489,9 @@
       
         <tags>
             
-            <tag> Study </tag>
-            
             <tag> Python </tag>
+            
+            <tag> Study </tag>
             
             <tag> Pytorch </tag>
             
@@ -495,9 +522,9 @@
       
         <tags>
             
-            <tag> Study </tag>
-            
             <tag> Python </tag>
+            
+            <tag> Study </tag>
             
             <tag> algorithm </tag>
             
@@ -524,9 +551,9 @@
       
         <tags>
             
-            <tag> Study </tag>
-            
             <tag> Python </tag>
+            
+            <tag> Study </tag>
             
             <tag> algorithm </tag>
             
@@ -553,9 +580,9 @@
       
         <tags>
             
-            <tag> Study </tag>
-            
             <tag> Python </tag>
+            
+            <tag> Study </tag>
             
             <tag> Data </tag>
             
@@ -584,9 +611,9 @@
       
         <tags>
             
-            <tag> Study </tag>
-            
             <tag> Python </tag>
+            
+            <tag> Study </tag>
             
             <tag> Data </tag>
             
@@ -615,9 +642,9 @@
       
         <tags>
             
-            <tag> Study </tag>
-            
             <tag> Python </tag>
+            
+            <tag> Study </tag>
             
             <tag> 爬虫 </tag>
             
@@ -644,9 +671,9 @@
       
         <tags>
             
-            <tag> Study </tag>
-            
             <tag> Python </tag>
+            
+            <tag> Study </tag>
             
         </tags>
       
