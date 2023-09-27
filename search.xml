@@ -8,7 +8,7 @@
       <link href="/2023/09/26/Software-Engineering/"/>
       <url>/2023/09/26/Software-Engineering/</url>
       
-        <content type="html"><![CDATA[<h2 id="introduction">Introduction</h2><h3 id="software-cost">Software Cost</h3><ul><li><p>The costs of software on a PC are often greater than the hardwarecost.</p></li><li><p>More to maintain than it does to develop</p></li><li><p>Software engineering is concerned with cost-effective softwaredevelopment.</p></li></ul><h3 id="software-project-failure">Software Project failure</h3><ol type="1"><li>Increasing System Complexity.</li><li>Failure to use software engineering methods.</li></ol><blockquote><p>Exp:</p><p>It is fairly easy to write computer programs without using softwareengineering methods and techniques.</p></blockquote><h3 id="software-products">Software products</h3><ul><li><p>Generic products</p><blockquote><p>Sold to customer</p></blockquote><blockquote><blockquote><p><strong>Graphics programs</strong>, <strong>Project managementtools</strong>; <strong>CAD</strong> software; Software for specificmarkets such as <strong>appointments systems for dentists</strong></p></blockquote></blockquote></li><li><p>Customized products</p><blockquote><p>Software that is commissioned by a specific customer to meet theirown needs</p></blockquote><blockquote><blockquote><p><strong>Embedded control systems</strong>, <strong>Air trafficcontrol software</strong>, <strong>Traffic monitoring systems</strong>### Essential attributes of good software</p></blockquote></blockquote></li><li><p>Maintainability</p></li><li><p>Dependability and Secutiry</p></li><li><p>Efficiency</p></li><li><p>Acceptability</p></li></ul><h3 id="all-aspects-of-software-production">All aspects of softwareproduction</h3><p>Not just technical process of development. Also project managementand the development of tools, methods etc. to support softwareproduction.</p><h3 id="importance-of-software-engineering">Importance of softwareengineering</h3><ul><li><p>More and more, individuals and society <strong>rely on</strong>advanced software systems.</p></li><li><p>It is usually <strong>cheaper</strong>, in the long run, to usesoftware engineering methods and techniques of software systems ratherthan just write the programs as if it was a personal programmingproject.</p></li></ul><h3 id="software-process-activities"><strong>Software processactivities</strong></h3><ol type="1"><li>Software <strong>specification</strong>.</li></ol><blockquote><p>customers and engineers define the software that is to be producedand the constraints on its operation</p></blockquote><ol start="2" type="1"><li>Software <strong>development</strong>.</li></ol><blockquote><p>where the software is designed and programmed</p></blockquote><ol start="3" type="1"><li>Software <strong>validation</strong>.</li></ol><blockquote><p>where the software is checked to ensure that it is what the customerrequires</p></blockquote><ol start="4" type="1"><li>Software <strong>evolution</strong>.</li></ol><blockquote><p>where the software is modified to reflect changing customer andmarket requirements</p></blockquote><h3 id="general-issues-that-affect-software">General issues that affectsoftware</h3><ul><li><p>Heterogeneity(不统一)</p><blockquote><p>Different types of computer and mobile devices.</p></blockquote></li><li><p>Business and social change</p><blockquote><p>They changing pincredibly quickly as emerging economies develop andnew technologies become abailabel.</p></blockquote></li><li><p>Security and Trust</p><blockquote><p>Software is intertwined with all aspects of our lives.</p></blockquote></li><li><p>Scale</p><blockquote><p>Be developed across a very wide range of scales, from very small<code>embedded systems</code> in portable or wearable devices through to<code>internet-scale</code>, <code>cloud-base</code> systems that servea global community.</p></blockquote></li></ul><h3 id="application-types">Application types</h3><table><colgroup><col style="width: 17%" /><col style="width: 63%" /><col style="width: 19%" /></colgroup><thead><tr class="header"><th style="text-align: left;">Types</th><th style="text-align: left;">Descripe</th><th style="text-align: left;">Example</th></tr></thead><tbody><tr class="odd"><td style="text-align: left;">Stand-alone applications</td><td style="text-align: left;">Run on a local computer, inclued allnecessary functionality and <strong>do not need</strong> to be connectedto a <strong>network</strong></td><td style="text-align: left;">Windows, Mac OS, Microsoft Word</td></tr><tr class="even"><td style="text-align: left;">Interactive transaction-basedapplications</td><td style="text-align: left;">Execute <strong>on a remotecomputer</strong> and are accessed by users from their own PCs orterminals.</td><td style="text-align: left;">web applications, e-commerceapplications</td></tr><tr class="odd"><td style="text-align: left;">Embedded control systems</td><td style="text-align: left;">control and manage <strong>hardwaredevices</strong>.</td><td style="text-align: left;">Medical Devices, Smartphones</td></tr><tr class="even"><td style="text-align: left;">Batch processing systems</td><td style="text-align: left;">Designed to process data in <strong>largebatches</strong>, always business systems. They process large numbers ofindividual inputs to create corresponding outputs.</td><td style="text-align: left;">phone billing systems, salary paymentsystems.</td></tr><tr class="odd"><td style="text-align: left;">Entertainment systems</td><td style="text-align: left;">Are primarily for personal use and whichare intended to <strong>entertain</strong> the user(<code>They can connect to the network</code>)</td><td style="text-align: left;">Games</td></tr><tr class="even"><td style="text-align: left;">Systems for modelling and simulation</td><td style="text-align: left;">Are developed by<strong>scientists</strong> and <strong>engineers</strong> to** model**physical processes or situations</td><td style="text-align: left;">Matlab</td></tr><tr class="odd"><td style="text-align: left;">Data collection systems</td><td style="text-align: left;"><strong>Collect</strong> data from theirenvironment using a <strong>set of sensors</strong> and <strong>sendthat data</strong> to other systems for processing.</td><td style="text-align: left;">wilderness weather station</td></tr><tr class="even"><td style="text-align: left;">Systems of systems</td><td style="text-align: left;">Are composed of a number of other softwaresystems</td><td style="text-align: left;">School systems. Programmingenvironments.</td></tr></tbody></table><h3 id="software-engineering-fundamentals">Software engineeringfundamentals</h3><ul><li>Using a managed and understood <strong>developmentprocess</strong>.</li><li><strong>Dependability</strong> and <strong>performance</strong> areimportant for all types of system</li><li>Understanding and managing the software<strong>specification</strong> and <strong>requirements</strong> areimportant</li><li><strong>Reuse</strong> software that has <strong>already</strong>been developed rather than write new software</li></ul><h3 id="web-based-software-engineering">Web-based softwareengineering</h3><ul><li>Complex distributed systems</li><li>Use the same fundamental ideas as other types of softwaresystem</li><li>Software reuse is important</li><li>Incremental and agile development</li><li>Service-oriented systems (the software components are stand-aloneweb services)</li><li>Rich interfaces</li></ul><h3 id="software-engineering-ethics">Software engineering ethics</h3><ul><li>Involves <strong>wider responsibilities</strong> than simply theapplication of technical skills.</li><li>Must behave in an <strong>honest</strong> and<strong>ethically</strong> responsible way if they are to be respectedas professionals.</li><li>Ethical behaviour is <strong>more</strong> than simply upholding thelaw but <strong>involves</strong> <strong>following</strong> a set of<strong>principles</strong> that are <strong>morally</strong>correct.</li></ul><h3 id="uml-diagrams-unified-modelling-language">UML diagrams (UnifiedModelling Language)</h3><ol type="1"><li>Class Diagrams</li></ol><p>information structure realtionships between data items</p><p>modular structure for the system <imgsrc="https://jsd.cdn.zzko.cn/gh/waterkingest/image_bed@master/20230927/image.421p62lfxes0.webp"alt="image" /></p><ol start="2" type="1"><li>Use Cases</li></ol><p>user's view, lists functions, visual overview of the mainrequirements</p><figure><imgsrc="https://pic4.zhimg.com/80/v2-5215f48daa00f92fb457bd57e6a9ad9f_1440w.webp"alt="UseCases" /><figcaption aria-hidden="true">UseCases</figcaption></figure><ol start="3" type="1"><li>UML Package Diagrams</li></ol><p>Overall architecture, Dependencies between components</p><figure><imgsrc="https://jsd.cdn.zzko.cn/gh/waterkingest/image_bed@master/20230927/image.11w4xkewjkg0.webp"alt="image" /><figcaption aria-hidden="true">image</figcaption></figure>]]></content>
+        <content type="html"><![CDATA[<h2 id="introduction">Introduction</h2><h3 id="software-cost">Software Cost</h3><ul><li><p>The costs of software on a PC are often <strong>greater</strong>than the hardware cost.</p></li><li><p>More to <strong>maintain</strong> than it does to<strong>develop</strong></p></li><li><p>Software engineering is concerned with<strong>cost-effective</strong> software development.</p></li></ul><h3 id="software-project-failure">Software Project failure</h3><ol type="1"><li>Increasing System <strong>Complexity</strong>.</li><li><strong>Failure</strong> to use software engineering methods.</li></ol><blockquote><p>Exp:</p><p>It is fairly easy to write computer programs without using softwareengineering methods and techniques.</p></blockquote><h3 id="software-products">Software products</h3><ul><li><p>Generic products</p><blockquote><p>Sold to customer</p></blockquote><blockquote><blockquote><p><strong>Graphics programs</strong>, <strong>Project managementtools</strong>; <strong>CAD</strong> software; Software for specificmarkets such as <strong>appointments systems for dentists</strong></p></blockquote></blockquote></li><li><p>Customized products</p><blockquote><p>Software that is commissioned by a specific customer to meet theirown needs</p></blockquote><blockquote><blockquote><p><strong>Embedded control systems</strong>, <strong>Air trafficcontrol software</strong>, <strong>Traffic monitoringsystems</strong></p></blockquote></blockquote></li></ul><h3 id="essential-attributes-of-good-software">Essential attributes ofgood software</h3><ul><li>Maintainability</li><li>Dependability and Secutiry</li><li>Efficiency</li><li>Acceptability</li></ul><h3 id="all-aspects-of-software-production">All aspects of softwareproduction</h3><p>Not just technical process of development. Also project managementand the development of tools, methods etc. to support softwareproduction.</p><h3 id="importance-of-software-engineering">Importance of softwareengineering</h3><ul><li><p>More and more, individuals and society <strong>rely on</strong>advanced software systems.</p></li><li><p>It is usually <strong>cheaper</strong>, in the long run, to usesoftware engineering methods and techniques of software systems ratherthan just write the programs as if it was a personal programmingproject.</p></li></ul><h3 id="software-process-activities"><strong>Software processactivities</strong></h3><ol type="1"><li>Software <strong>specification</strong>.</li></ol><blockquote><p>customers and engineers define the software that is to be producedand the constraints on its operation</p></blockquote><ol start="2" type="1"><li>Software <strong>development</strong>.</li></ol><blockquote><p>where the software is designed and programmed</p></blockquote><ol start="3" type="1"><li>Software <strong>validation</strong>.</li></ol><blockquote><p>where the software is checked to ensure that it is what the customerrequires</p></blockquote><ol start="4" type="1"><li>Software <strong>evolution</strong>.</li></ol><blockquote><p>where the software is modified to reflect changing customer andmarket requirements</p></blockquote><h3 id="general-issues-that-affect-software">General issues that affectsoftware</h3><ul><li><p>Heterogeneity(不统一)</p><blockquote><p>Different types of computer and mobile devices.</p></blockquote></li><li><p>Business and social change</p><blockquote><p>They changing pincredibly quickly as emerging economies develop andnew technologies become abailabel.</p></blockquote></li><li><p>Security and Trust</p><blockquote><p>Software is intertwined with all aspects of our lives.</p></blockquote></li><li><p>Scale</p><blockquote><p>Be developed across a very wide range of scales, from very small<code>embedded systems</code> in portable or wearable devices through to<code>internet-scale</code>, <code>cloud-base</code> systems that servea global community.</p></blockquote></li></ul><h3 id="application-types">Application types</h3><table><colgroup><col style="width: 17%" /><col style="width: 63%" /><col style="width: 19%" /></colgroup><thead><tr class="header"><th style="text-align: left;">Types</th><th style="text-align: left;">Descripe</th><th style="text-align: left;">Example</th></tr></thead><tbody><tr class="odd"><td style="text-align: left;">Stand-alone applications</td><td style="text-align: left;">Run on a local computer, inclued allnecessary functionality and <strong>do not need</strong> to be connectedto a <strong>network</strong></td><td style="text-align: left;">Windows, Mac OS, Microsoft Word</td></tr><tr class="even"><td style="text-align: left;">Interactive transaction-basedapplications</td><td style="text-align: left;">Execute <strong>on a remotecomputer</strong> and are accessed by users from their own PCs orterminals.</td><td style="text-align: left;">web applications, e-commerceapplications</td></tr><tr class="odd"><td style="text-align: left;">Embedded control systems</td><td style="text-align: left;">control and manage <strong>hardwaredevices</strong>.</td><td style="text-align: left;">Medical Devices, Smartphones</td></tr><tr class="even"><td style="text-align: left;">Batch processing systems</td><td style="text-align: left;">Designed to process data in <strong>largebatches</strong>, always business systems. They process large numbers ofindividual inputs to create corresponding outputs.</td><td style="text-align: left;">phone billing systems, salary paymentsystems.</td></tr><tr class="odd"><td style="text-align: left;">Entertainment systems</td><td style="text-align: left;">Are primarily for personal use and whichare intended to <strong>entertain</strong> the user(<code>They can connect to the network</code>)</td><td style="text-align: left;">Games</td></tr><tr class="even"><td style="text-align: left;">Systems for modelling and simulation</td><td style="text-align: left;">Are developed by<strong>scientists</strong> and <strong>engineers</strong> to** model**physical processes or situations</td><td style="text-align: left;">Matlab</td></tr><tr class="odd"><td style="text-align: left;">Data collection systems</td><td style="text-align: left;"><strong>Collect</strong> data from theirenvironment using a <strong>set of sensors</strong> and <strong>sendthat data</strong> to other systems for processing.</td><td style="text-align: left;">wilderness weather station</td></tr><tr class="even"><td style="text-align: left;">Systems of systems</td><td style="text-align: left;">Are composed of a number of other softwaresystems</td><td style="text-align: left;">School systems. Programmingenvironments.</td></tr></tbody></table><h3 id="software-engineering-fundamentals">Software engineeringfundamentals</h3><ul><li>Using a managed and understood <strong>developmentprocess</strong>.</li><li><strong>Dependability</strong> and <strong>performance</strong> areimportant for all types of system</li><li>Understanding and managing the software<strong>specification</strong> and <strong>requirements</strong> areimportant</li><li><strong>Reuse</strong> software that has <strong>already</strong>been developed rather than write new software</li></ul><h3 id="web-based-software-engineering">Web-based softwareengineering</h3><ul><li>Complex distributed systems</li><li>Use the same fundamental ideas as other types of softwaresystem</li><li>Software reuse is important</li><li>Incremental and agile development</li><li>Service-oriented systems (the software components are stand-aloneweb services)</li><li>Rich interfaces</li></ul><h3 id="software-engineering-ethics">Software engineering ethics</h3><ul><li>Involves <strong>wider responsibilities</strong> than simply theapplication of technical skills.</li><li>Must behave in an <strong>honest</strong> and<strong>ethically</strong> responsible way if they are to be respectedas professionals.</li><li>Ethical behaviour is <strong>more</strong> than simply upholding thelaw but <strong>involves</strong> <strong>following</strong> a set of<strong>principles</strong> that are <strong>morally</strong>correct.</li></ul><hr /><h3 id="uml-diagrams-unified-modelling-language">UML diagrams (UnifiedModelling Language)</h3><ol type="1"><li><strong>Class Diagrams</strong></li></ol><p>information structure realtionships between data items</p><p>modular structure for the system</p><p><ahref="https://zhuanlan.zhihu.com/p/626801628"><strong>EXAMPLE:</strong></a><imgsrc="https://jsd.cdn.zzko.cn/gh/waterkingest/image_bed@master/20230927/image.421p62lfxes0.webp"alt="Class" /></p><ol start="2" type="1"><li><strong>Use Cases</strong></li></ol><p>user's view, lists functions, visual overview of the mainrequirements</p><p><ahref="https://zhuanlan.zhihu.com/p/135348779"><strong>EXAMPLE:</strong></a></p><figure><imgsrc="https://pic4.zhimg.com/80/v2-5215f48daa00f92fb457bd57e6a9ad9f_1440w.webp"alt="UseCases" /><figcaption aria-hidden="true">UseCases</figcaption></figure><ol start="3" type="1"><li><strong>UML Package Diagrams</strong></li></ol><p>Overall architecture, Dependencies between components</p><figure><imgsrc="https://jsd.cdn.zzko.cn/gh/waterkingest/image_bed@master/20230927/image.11w4xkewjkg0.webp"alt="Package" /><figcaption aria-hidden="true">Package</figcaption></figure><ol start="4" type="1"><li><strong>Statecharts</strong></li></ol><p>responses to <strong>events</strong>, <strong>dynamicbehavior</strong>, event ordering reachability, deadlock</p><p><ahref="https://zhuanlan.zhihu.com/p/627832677"><strong>EXAMPLE:</strong></a></p><figure><imgsrc="https://jsd.cdn.zzko.cn/gh/waterkingest/image_bed@master/20230927/image.7af1p2a012s0.webp"alt="Statecharts" /><figcaption aria-hidden="true">Statecharts</figcaption></figure><ol start="5" type="1"><li><strong>UML Sequence Diagrams</strong></li></ol><p>individual <strong>scenario</strong>, <strong>interactions</strong>between users and system, Sqquence of messages</p><p><ahref="https://zhuanlan.zhihu.com/p/629630251"><strong>EXAMPLE:</strong></a></p><figure><imgsrc="https://jsd.cdn.zzko.cn/gh/waterkingest/image_bed@master/20230927/image.50unj1l8ckg0.webp"alt="Sequence" /><figcaption aria-hidden="true">Sequence</figcaption></figure><ol start="6" type="1"><li><strong>Activaty Diagrams</strong></li></ol><p><strong>Business</strong> process, <strong>concurrency</strong> and<strong>synchronization</strong>, dependencies betweens tasks</p><p><ahref="https://zhuanlan.zhihu.com/p/149079804"><strong>EXAMPLE:</strong></a></p><figure><imgsrc="https://jsd.cdn.zzko.cn/gh/waterkingest/image_bed@master/20230927/image.2x434jr4tr40.webp"alt="Activaty" /><figcaption aria-hidden="true">Activaty</figcaption></figure><ol start="7" type="1"><li><strong>Block Diagrams</strong></li></ol><p>Don't need details,</p><ul><li>Rectangle: Entity</li><li>Rounded Rectangle: Action</li><li>Round: Start</li><li>Concentric circles: End</li></ul><p><strong>EXAMPLE:</strong></p><figure><imgsrc="https://jsd.cdn.zzko.cn/gh/waterkingest/image_bed@master/20230927/image.43x1qv8asm80.webp"alt="Block" /><figcaption aria-hidden="true">Block</figcaption></figure><figure><imgsrc="https://jsd.cdn.zzko.cn/gh/waterkingest/image_bed@master/20230927/image.64ovottbcwc0.webp"alt="Block2" /><figcaption aria-hidden="true">Block2</figcaption></figure><h3 id="key-points"><strong>Key points</strong></h3><ul><li>Software engineering is an engineering discipline that is concernedwith <strong>all aspects</strong> of software production</li><li>Essential software product attributes are<strong>maintainability</strong>, <strong>dependability</strong> and<strong>security</strong>, <strong>efficiency</strong> and<strong>acceptability</strong>.</li><li>The high-level activities of <strong>specification</strong>,<strong>development</strong>, <strong>validation</strong> and<strong>evolution</strong> are part of all software processes.</li><li>The <strong>fundamental notions</strong> of software engineering areuniversally applicable to <strong>all types</strong> of systemdevelopment.</li><li>There are many <strong>different types</strong> of system, and<strong>each requires appropriate</strong> software engineering toolsand techniques for their development.(Each one is different)</li><li>The fundamental ideas of software engineering are <strong>applicableto all types</strong> of software system</li><li>Software engineers have <strong>responsibilities</strong> to theengineering <strong>profession</strong> and <strong>society</strong>.They should <strong>not</strong> simply be concerned with technicalissues</li><li>Professional societies <strong>publish codes</strong> of conductwhich <strong>set out the standards</strong> of<strong>behaviour</strong> expected of their members.</li></ul>]]></content>
       
       
       <categories>
@@ -87,9 +87,9 @@
       
         <tags>
             
-            <tag> Study </tag>
-            
             <tag> Python </tag>
+            
+            <tag> Study </tag>
             
             <tag> Pygame </tag>
             
@@ -363,9 +363,9 @@
       
         <tags>
             
-            <tag> Study </tag>
-            
             <tag> Python </tag>
+            
+            <tag> Study </tag>
             
             <tag> algorithm </tag>
             
@@ -394,9 +394,9 @@
       
         <tags>
             
-            <tag> Study </tag>
-            
             <tag> Python </tag>
+            
+            <tag> Study </tag>
             
             <tag> algorithm </tag>
             
@@ -423,9 +423,9 @@
       
         <tags>
             
-            <tag> Study </tag>
-            
             <tag> Python </tag>
+            
+            <tag> Study </tag>
             
             <tag> DJango </tag>
             
@@ -454,9 +454,9 @@
       
         <tags>
             
-            <tag> Study </tag>
-            
             <tag> Python </tag>
+            
+            <tag> Study </tag>
             
             <tag> DJango </tag>
             
@@ -529,9 +529,9 @@
       
         <tags>
             
-            <tag> Study </tag>
-            
             <tag> Python </tag>
+            
+            <tag> Study </tag>
             
             <tag> Pytorch </tag>
             
@@ -562,9 +562,9 @@
       
         <tags>
             
-            <tag> Study </tag>
-            
             <tag> Python </tag>
+            
+            <tag> Study </tag>
             
             <tag> algorithm </tag>
             
@@ -591,9 +591,9 @@
       
         <tags>
             
-            <tag> Study </tag>
-            
             <tag> Python </tag>
+            
+            <tag> Study </tag>
             
             <tag> algorithm </tag>
             
@@ -620,9 +620,9 @@
       
         <tags>
             
-            <tag> Study </tag>
-            
             <tag> Python </tag>
+            
+            <tag> Study </tag>
             
             <tag> Data </tag>
             
@@ -651,9 +651,9 @@
       
         <tags>
             
-            <tag> Study </tag>
-            
             <tag> Python </tag>
+            
+            <tag> Study </tag>
             
             <tag> Data </tag>
             
@@ -682,9 +682,9 @@
       
         <tags>
             
-            <tag> Study </tag>
-            
             <tag> Python </tag>
+            
+            <tag> Study </tag>
             
             <tag> 爬虫 </tag>
             
@@ -711,9 +711,9 @@
       
         <tags>
             
-            <tag> Study </tag>
-            
             <tag> Python </tag>
+            
+            <tag> Study </tag>
             
         </tags>
       
