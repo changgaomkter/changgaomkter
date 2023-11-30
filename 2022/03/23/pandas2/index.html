@@ -1,0 +1,636 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Pandas用法（二） | Dreaming</title><meta name="keywords" content="Python,Study,Data,Pandas"><meta name="author" content="Yuhang Chen"><meta name="copyright" content="Yuhang Chen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="该文档记录一些Pandas对已有数据进行合并排序等操作的方法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pandas用法（二）">
+<meta property="og:url" content="http://waterkingest.gitee.io/2022/03/23/pandas2/index.html">
+<meta property="og:site_name" content="Dreaming">
+<meta property="og:description" content="该文档记录一些Pandas对已有数据进行合并排序等操作的方法。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2021/04/pandas.png">
+<meta property="article:published_time" content="2022-03-23T16:56:47.000Z">
+<meta property="article:modified_time" content="2023-06-29T07:06:16.269Z">
+<meta property="article:author" content="Yuhang Chen">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Study">
+<meta property="article:tag" content="Data">
+<meta property="article:tag" content="Pandas">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.runoob.com/wp-content/uploads/2021/04/pandas.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://waterkingest.gitee.io/2022/03/23/pandas2/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?6e088103de54a760ddaa12b65dea0898";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":100},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: Yuhang Chen","link":"Link: ","source":"Source: Dreaming","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Pandas用法（二）',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-06-29 03:06:16'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="//at.alicdn.com/t/font_3261664_6l4hj6o85xj.css"><meta name="baidu-site-verification" content="code-unKEYLRHwi" /><script type="text/javascript" src='/js/skiphttps.js'></script><meta name="generator" content="Hexo 5.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/favicon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">30</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">25</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">5</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></div><div class="menus_item"><a class="site-page" href="/secret/"><i class="fa-fw fas fa-candy-cane"></i><span> Secret Garden</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://www.runoob.com/wp-content/uploads/2021/04/pandas.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Dreaming</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></div><div class="menus_item"><a class="site-page" href="/secret/"><i class="fa-fw fas fa-candy-cane"></i><span> Secret Garden</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Pandas用法（二）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-03-23T16:56:47.000Z" title="Created 2022-03-23 12:56:47">2022-03-23</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-06-29T07:06:16.269Z" title="Updated 2023-06-29 03:06:16">2023-06-29</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%B5%84%E6%96%99/">资料</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">3.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>15min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Pandas用法（二）"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">Comments:</span><a href="/2022/03/23/pandas2/#post-comment" itemprop="discussionUrl"><span class="valine-comment-count" data-xid="/2022/03/23/pandas2/" itemprop="commentCount"></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>该文档记录一些Pandas对已有数据进行合并排序等操作的方法。 ##
+重置行列标签</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">N=<span class="number">20</span></span><br><span class="line">df = pd.DataFrame(&#123;</span><br><span class="line">   <span class="string">&#x27;A&#x27;</span>: pd.date_range(start=<span class="string">&#x27;2016-01-01&#x27;</span>,periods=N,freq=<span class="string">&#x27;D&#x27;</span>),</span><br><span class="line">   <span class="string">&#x27;x&#x27;</span>: np.linspace(<span class="number">0</span>,stop=N-<span class="number">1</span>,num=N),</span><br><span class="line">   <span class="string">&#x27;y&#x27;</span>: np.random.rand(N),</span><br><span class="line">   <span class="string">&#x27;C&#x27;</span>: np.random.choice([<span class="string">&#x27;Low&#x27;</span>,<span class="string">&#x27;Medium&#x27;</span>,<span class="string">&#x27;High&#x27;</span>],N).tolist(),</span><br><span class="line">   <span class="string">&#x27;D&#x27;</span>: np.random.normal(<span class="number">100</span>, <span class="number">10</span>, size=(N)).tolist()</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">#重置行、列索引标签</span></span><br><span class="line">df_reindexed = df.reindex(index=[<span class="number">0</span>,<span class="number">2</span>,<span class="number">5</span>], columns=[<span class="string">&#x27;A&#x27;</span>, <span class="string">&#x27;C&#x27;</span>, <span class="string">&#x27;B&#x27;</span>])</span><br><span class="line">print(df_reindexed)</span><br><span class="line"><span class="comment">#            A       C   B</span></span><br><span class="line"><span class="comment"># 0 2020-12-07  Medium NaN</span></span><br><span class="line"><span class="comment"># 2 2020-12-09     Low NaN</span></span><br><span class="line"><span class="comment"># 5 2020-12-12    High NaN</span></span><br></pre></td></tr></table></figure>
+<p><code>a= a.reindex_like(b)</code> 可以把a的index重置为与b相等的</p>
+<h3 id="重命名标签-用-rename">重命名标签 用 rename()</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">df1 = pd.DataFrame(np.random.randn(<span class="number">6</span>,<span class="number">3</span>),columns=[<span class="string">&#x27;col1&#x27;</span>,<span class="string">&#x27;col2&#x27;</span>,<span class="string">&#x27;col3&#x27;</span>])</span><br><span class="line"><span class="built_in">print</span> (df1)</span><br><span class="line"><span class="comment">#对行和列重新命名</span></span><br><span class="line"><span class="built_in">print</span> (df1.rename(columns=&#123;<span class="string">&#x27;col1&#x27;</span> : <span class="string">&#x27;c1&#x27;</span>, <span class="string">&#x27;col2&#x27;</span> : <span class="string">&#x27;c2&#x27;</span>&#125;,index = &#123;<span class="number">0</span> : <span class="string">&#x27;apple&#x27;</span>, <span class="number">1</span> : <span class="string">&#x27;banana&#x27;</span>, <span class="number">2</span> : <span class="string">&#x27;durian&#x27;</span>&#125;))</span><br><span class="line"></span><br><span class="line"><span class="comment">#        col1      col2      col3</span></span><br><span class="line"><span class="comment"># 0 -1.762133 -0.636819 -0.309572</span></span><br><span class="line"><span class="comment"># 1 -0.093965 -0.924387 -2.031457</span></span><br><span class="line"><span class="comment"># 2 -1.231485 -0.738667  1.415724</span></span><br><span class="line"><span class="comment"># 3 -0.826322  0.206574 -0.731701</span></span><br><span class="line"><span class="comment"># 4  1.863816 -0.175705  0.491907</span></span><br><span class="line"><span class="comment"># 5  0.677361  0.870041 -0.636518</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#               c1        c2      col3</span></span><br><span class="line"><span class="comment"># apple  -1.762133 -0.636819 -0.309572</span></span><br><span class="line"><span class="comment"># banana -0.093965 -0.924387 -2.031457</span></span><br><span class="line"><span class="comment"># durian -1.231485 -0.738667  1.415724</span></span><br><span class="line"><span class="comment"># 3      -0.826322  0.206574 -0.731701</span></span><br><span class="line"><span class="comment"># 4       1.863816 -0.175705  0.491907</span></span><br><span class="line"><span class="comment"># 5       0.677361  0.870041 -0.636518</span></span><br></pre></td></tr></table></figure>
+<h2 id="排序">排序</h2>
+<h3 id="按标签排序">按标签排序</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="comment">#行标签乱序排列，列标签乱序排列</span></span><br><span class="line">unsorted_df=pd.DataFrame(np.random.randn(<span class="number">10</span>,<span class="number">2</span>),index=[<span class="number">1</span>,<span class="number">6</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">9</span>,<span class="number">8</span>,<span class="number">0</span>,<span class="number">7</span>],columns=[<span class="string">&#x27;col2&#x27;</span>,<span class="string">&#x27;col1&#x27;</span>])</span><br><span class="line">print(unsorted_df)</span><br><span class="line"><span class="comment">#        col2      col1</span></span><br><span class="line"><span class="comment"># 1  0.252640 -1.219655</span></span><br><span class="line"><span class="comment"># 6 -1.192283 -0.765094</span></span><br><span class="line"><span class="comment"># 4  0.029277 -0.372222</span></span><br><span class="line"><span class="comment"># 2 -0.078161 -1.549456</span></span><br><span class="line"><span class="comment"># 3  0.500737 -0.445477</span></span><br><span class="line"><span class="comment"># 5 -0.952137 -0.129147</span></span><br><span class="line"><span class="comment"># 9 -1.748176 -1.792424</span></span><br><span class="line"><span class="comment"># 8 -0.675795  1.312546</span></span><br><span class="line"><span class="comment"># 0  0.528465  0.838617</span></span><br><span class="line"><span class="comment"># 7 -0.511180  2.226228</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>sort_index</code></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">sorted_df=unsorted_df.sort_index()<span class="comment">#默认对行标签进行排序</span></span><br><span class="line">print(sorted_df)</span><br><span class="line">       col2      col1</span><br><span class="line"><span class="number">0</span>  <span class="number">0.528465</span>  <span class="number">0.838617</span></span><br><span class="line"><span class="number">1</span>  <span class="number">0.252640</span> -<span class="number">1.219655</span></span><br><span class="line"><span class="number">2</span> -<span class="number">0.078161</span> -<span class="number">1.549456</span></span><br><span class="line"><span class="number">3</span>  <span class="number">0.500737</span> -<span class="number">0.445477</span></span><br><span class="line"><span class="number">4</span>  <span class="number">0.029277</span> -<span class="number">0.372222</span></span><br><span class="line"><span class="number">5</span> -<span class="number">0.952137</span> -<span class="number">0.129147</span></span><br><span class="line"><span class="number">6</span> -<span class="number">1.192283</span> -<span class="number">0.765094</span></span><br><span class="line"><span class="number">7</span> -<span class="number">0.511180</span>  <span class="number">2.226228</span></span><br><span class="line"><span class="number">8</span> -<span class="number">0.675795</span>  <span class="number">1.312546</span></span><br><span class="line"><span class="number">9</span> -<span class="number">1.748176</span> -<span class="number">1.792424</span></span><br><span class="line"></span><br><span class="line">sorted_df = unsorted_df.sort_index(ascending=<span class="literal">False</span>)<span class="comment">#引入ascending参数实现倒序排序</span></span><br><span class="line">       col2      col1</span><br><span class="line"><span class="number">9</span> -<span class="number">1.748176</span> -<span class="number">1.792424</span></span><br><span class="line"><span class="number">8</span> -<span class="number">0.675795</span>  <span class="number">1.312546</span></span><br><span class="line"><span class="number">7</span> -<span class="number">0.511180</span>  <span class="number">2.226228</span></span><br><span class="line"><span class="number">6</span> -<span class="number">1.192283</span> -<span class="number">0.765094</span></span><br><span class="line"><span class="number">5</span> -<span class="number">0.952137</span> -<span class="number">0.129147</span></span><br><span class="line"><span class="number">4</span>  <span class="number">0.029277</span> -<span class="number">0.372222</span></span><br><span class="line"><span class="number">3</span>  <span class="number">0.500737</span> -<span class="number">0.445477</span></span><br><span class="line"><span class="number">2</span> -<span class="number">0.078161</span> -<span class="number">1.549456</span></span><br><span class="line"><span class="number">1</span>  <span class="number">0.252640</span> -<span class="number">1.219655</span></span><br><span class="line"><span class="number">0</span>  <span class="number">0.528465</span>  <span class="number">0.838617</span></span><br><span class="line"></span><br><span class="line">sorted_df=unsorted_df.sort_index(axis=<span class="number">1</span>)<span class="comment"># axis=1则按列进行排序。</span></span><br><span class="line"><span class="built_in">print</span> (sorted_df)</span><br><span class="line">       col1      col2</span><br><span class="line"><span class="number">1</span> -<span class="number">1.219655</span>  <span class="number">0.252640</span></span><br><span class="line"><span class="number">6</span> -<span class="number">0.765094</span> -<span class="number">1.192283</span></span><br><span class="line"><span class="number">4</span> -<span class="number">0.372222</span>  <span class="number">0.029277</span></span><br><span class="line"><span class="number">2</span> -<span class="number">1.549456</span> -<span class="number">0.078161</span></span><br><span class="line"><span class="number">3</span> -<span class="number">0.445477</span>  <span class="number">0.500737</span></span><br><span class="line"><span class="number">5</span> -<span class="number">0.129147</span> -<span class="number">0.952137</span></span><br><span class="line"><span class="number">9</span> -<span class="number">1.792424</span> -<span class="number">1.748176</span></span><br><span class="line"><span class="number">8</span>  <span class="number">1.312546</span> -<span class="number">0.675795</span></span><br><span class="line"><span class="number">0</span>  <span class="number">0.838617</span>  <span class="number">0.528465</span></span><br><span class="line"><span class="number">7</span>  <span class="number">2.226228</span> -<span class="number">0.511180</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">unsorted_df = pd.DataFrame(&#123;<span class="string">&#x27;col1&#x27;</span>:[<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>],<span class="string">&#x27;col2&#x27;</span>:[<span class="number">1</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">4</span>]&#125;)</span><br><span class="line">sorted_df = unsorted_df.sort_values(by=<span class="string">&#x27;col1&#x27;</span>)<span class="comment">#对col1进行排序</span></span><br><span class="line"><span class="built_in">print</span> (sorted_df)</span><br><span class="line">   col1  col2</span><br><span class="line"><span class="number">1</span>     <span class="number">1</span>     <span class="number">3</span></span><br><span class="line"><span class="number">2</span>     <span class="number">1</span>     <span class="number">2</span></span><br><span class="line"><span class="number">3</span>     <span class="number">1</span>     <span class="number">4</span></span><br><span class="line"><span class="number">0</span>     <span class="number">2</span>     <span class="number">1</span></span><br><span class="line"></span><br><span class="line">sorted_df = unsorted_df.sort_values(by=[<span class="string">&#x27;col1&#x27;</span>,<span class="string">&#x27;col2&#x27;</span>])<span class="comment">#引入列表对两列进行排序</span></span><br><span class="line"><span class="built_in">print</span> (sorted_df)</span><br><span class="line">   col1  col2</span><br><span class="line"><span class="number">2</span>     <span class="number">1</span>     <span class="number">2</span></span><br><span class="line"><span class="number">1</span>     <span class="number">1</span>     <span class="number">3</span></span><br><span class="line"><span class="number">3</span>     <span class="number">1</span>     <span class="number">4</span></span><br><span class="line"><span class="number">0</span>     <span class="number">2</span>     <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<h3 id="排序算法">排序算法</h3>
+<ul>
+<li><p><code>sort_values()</code></p>
+<p>提供了三种排序算法</p>
+<ol type="1">
+<li>mergesort 归并</li>
+<li>heapsort 堆</li>
+<li>quicksort 快速</li>
+</ol></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">unsorted_df = pd.DataFrame(&#123;<span class="string">&#x27;col1&#x27;</span>:[<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>],<span class="string">&#x27;col2&#x27;</span>:[<span class="number">1</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">4</span>]&#125;)</span><br><span class="line">sorted_df = unsorted_df.sort_values(by=<span class="string">&#x27;col1&#x27;</span> ,kind=<span class="string">&#x27;mergesort&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span> (sorted_df)</span><br><span class="line">   col1  col2</span><br><span class="line"><span class="number">1</span>     <span class="number">1</span>     <span class="number">3</span></span><br><span class="line"><span class="number">2</span>     <span class="number">1</span>     <span class="number">2</span></span><br><span class="line"><span class="number">3</span>     <span class="number">1</span>     <span class="number">4</span></span><br><span class="line"><span class="number">0</span>     <span class="number">2</span>     <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<h2 id="去重">去重</h2>
+<p><code>df.drop_duplicates(subset=['A','B','C'],keep='first',inplace=True)</code></p>
+<table>
+<colgroup>
+<col style="width: 4%" />
+<col style="width: 96%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>参数</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>subset</td>
+<td>表示要进去重的列名，默认为 None。</td>
+</tr>
+<tr class="even">
+<td>keep</td>
+<td>有三个可选参数，分别是 first、last、False，默认为
+first，表示只保留第一次出现的重复项，删除其余重复项，last
+表示只保留最后一次出现的重复项，False 则表示删除所有重复项。</td>
+</tr>
+<tr class="odd">
+<td>inplace</td>
+<td>布尔值参数，默认为 False 表示删除重复项后返回一个副本，若为 Ture
+则表示直接在原数据上删除重复项。</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>首先创建一个有重复值的DataFrame</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">data=&#123;</span><br><span class="line">   </span><br><span class="line">    <span class="string">&#x27;A&#x27;</span>:[<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>],</span><br><span class="line">    <span class="string">&#x27;B&#x27;</span>:[<span class="number">0</span>,<span class="number">2</span>,<span class="number">5</span>,<span class="number">0</span>],</span><br><span class="line">    <span class="string">&#x27;C&#x27;</span>:[<span class="number">4</span>,<span class="number">0</span>,<span class="number">4</span>,<span class="number">4</span>],</span><br><span class="line">    <span class="string">&#x27;D&#x27;</span>:[<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>]</span><br><span class="line">&#125;</span><br><span class="line">df=pd.DataFrame(data=data)</span><br><span class="line">print(df)</span><br><span class="line">  A B C D</span><br><span class="line"><span class="number">0</span> <span class="number">1</span> <span class="number">0</span> <span class="number">4</span> <span class="number">1</span></span><br><span class="line"><span class="number">1</span> <span class="number">0</span> <span class="number">2</span> <span class="number">0</span> <span class="number">0</span></span><br><span class="line"><span class="number">2</span> <span class="number">1</span> <span class="number">5</span> <span class="number">4</span> <span class="number">1</span></span><br><span class="line"><span class="number">3</span> <span class="number">1</span> <span class="number">0</span> <span class="number">4</span> <span class="number">1</span></span><br><span class="line"></span><br><span class="line">df.drop_duplicates()<span class="comment">#默认保留第一次出现的重复值</span></span><br><span class="line"></span><br><span class="line">  A B C D</span><br><span class="line"><span class="number">0</span> <span class="number">1</span> <span class="number">0</span> <span class="number">4</span> <span class="number">1</span></span><br><span class="line"><span class="number">1</span> <span class="number">0</span> <span class="number">2</span> <span class="number">0</span> <span class="number">0</span></span><br><span class="line"><span class="number">2</span> <span class="number">1</span> <span class="number">5</span> <span class="number">4</span> <span class="number">1</span></span><br><span class="line"></span><br><span class="line">df.drop_duplicates(keep=<span class="literal">False</span>)<span class="comment">#去除所有重复值</span></span><br><span class="line">  A B C D</span><br><span class="line"><span class="number">1</span> <span class="number">0</span> <span class="number">2</span> <span class="number">0</span> <span class="number">0</span></span><br><span class="line"><span class="number">2</span> <span class="number">1</span> <span class="number">5</span> <span class="number">4</span> <span class="number">1</span></span><br><span class="line">df.drop_duplicates(subset=[<span class="string">&#x27;B&#x27;</span>],keep=<span class="literal">False</span>)<span class="comment">#去除所有重复项，对于B列来说两个0是重复项</span></span><br><span class="line"></span><br><span class="line">df.drop_duplicates([<span class="string">&#x27;B&#x27;</span>],keep=<span class="string">&#x27;last&#x27;</span>)<span class="comment">#保留最后一个重复值</span></span><br></pre></td></tr></table></figure>
+<h2 id="处理字符串的方法">处理字符串的方法</h2>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 79%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>函数名称</th>
+<th>函数功能和描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>lower()</td>
+<td>将的字符串转换为小写。</td>
+</tr>
+<tr class="even">
+<td>upper()</td>
+<td>将的字符串转换为大写。</td>
+</tr>
+<tr class="odd">
+<td>len()</td>
+<td>得出字符串的长度。</td>
+</tr>
+<tr class="even">
+<td>strip()</td>
+<td>去除字符串两边的空格（包含换行符）。</td>
+</tr>
+<tr class="odd">
+<td>split()</td>
+<td>用指定的分割符分割字符串。</td>
+</tr>
+<tr class="even">
+<td>cat(sep="")</td>
+<td>用给定的分隔符连接字符串元素。</td>
+</tr>
+<tr class="odd">
+<td>get_dummies()</td>
+<td>返回一个带有独热编码值的 DataFrame 结构。</td>
+</tr>
+<tr class="even">
+<td>contains(pattern</td>
+<td>) 如果子字符串包含在元素中，则为每个元素返回一个布尔值 True，否则为
+False。</td>
+</tr>
+<tr class="odd">
+<td>replace(a,b)</td>
+<td>将值 a 替换为值 b。</td>
+</tr>
+<tr class="even">
+<td>count(pattern)</td>
+<td>返回每个字符串元素出现的次数。</td>
+</tr>
+<tr class="odd">
+<td>startswith(pattern)</td>
+<td>如果 Series 中的元素以指定的字符串开头，则返回 True。</td>
+</tr>
+<tr class="even">
+<td>endswith(pattern)</td>
+<td>如果 Series 中的元素以指定的字符串结尾，则返回 True。</td>
+</tr>
+<tr class="odd">
+<td>findall(pattern)</td>
+<td>以列表的形式返出现的字符串。</td>
+</tr>
+<tr class="even">
+<td>swapcase()</td>
+<td>交换大小写。</td>
+</tr>
+<tr class="odd">
+<td>islower()</td>
+<td>返回布尔值，检查 Series
+中组成每个字符串的所有字符是否都为小写。</td>
+</tr>
+<tr class="even">
+<td>issupper()</td>
+<td>返回布尔值，检查 Series
+中组成每个字符串的所有字符是否都为大写。</td>
+</tr>
+<tr class="odd">
+<td>isnumeric()</td>
+<td>返回布尔值，检查 Series
+中组成每个字符串的所有字符是否都为数字。</td>
+</tr>
+<tr class="even">
+<td>repeat(value)</td>
+<td>以指定的次数重复每个元素。</td>
+</tr>
+<tr class="odd">
+<td>find(pattern)</td>
+<td>返回字符串第一次出现的索引位置</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>使用方法 Dataframe/Series.str.[上述的函数]</li>
+</ul>
+<h2 id="分组操作">分组操作</h2>
+<ul>
+<li>使用<code>groupby()</code> df.groupby("key")
+df.groupby("key",axis=1) df.groupby(["key1","key2"])</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">data = &#123;<span class="string">&#x27;Name&#x27;</span>: [<span class="string">&#x27;John&#x27;</span>, <span class="string">&#x27;Helen&#x27;</span>, <span class="string">&#x27;Sona&#x27;</span>, <span class="string">&#x27;Ella&#x27;</span>],</span><br><span class="line">   <span class="string">&#x27;score&#x27;</span>: [<span class="number">82</span>, <span class="number">98</span>, <span class="number">91</span>, <span class="number">87</span>],</span><br><span class="line">   <span class="string">&#x27;option_course&#x27;</span>: [<span class="string">&#x27;C#&#x27;</span>,<span class="string">&#x27;Python&#x27;</span>,<span class="string">&#x27;Java&#x27;</span>,<span class="string">&#x27;C&#x27;</span>]&#125;</span><br><span class="line">df = pd.DataFrame(data)</span><br><span class="line"><span class="comment">#查看分组</span></span><br><span class="line">print(df.groupby(<span class="string">&#x27;score&#x27;</span>).groups)</span><br><span class="line"></span><br><span class="line">&#123;<span class="number">82</span>: Int64Index([<span class="number">0</span>], dtype=<span class="string">&#x27;int64&#x27;</span>), </span><br><span class="line"><span class="number">87</span>: Int64Index([<span class="number">3</span>], dtype=<span class="string">&#x27;int64&#x27;</span>), </span><br><span class="line"><span class="number">91</span>: Int64Index([<span class="number">2</span>], dtype=<span class="string">&#x27;int64&#x27;</span>), </span><br><span class="line"><span class="number">98</span>: Int64Index([<span class="number">1</span>], dtype=<span class="string">&#x27;int64&#x27;</span>)&#125;</span><br><span class="line"></span><br><span class="line">print(df.groupby([<span class="string">&#x27;Name&#x27;</span>,<span class="string">&#x27;score&#x27;</span>]).groups)<span class="comment">#指定多个标签</span></span><br><span class="line">&#123;(<span class="string">&#x27;Ella&#x27;</span>, <span class="number">87</span>): Int64Index([<span class="number">3</span>], dtype=<span class="string">&#x27;int64&#x27;</span>), </span><br><span class="line">(<span class="string">&#x27;Helen&#x27;</span>, <span class="number">98</span>): Int64Index([<span class="number">1</span>], dtype=<span class="string">&#x27;int64&#x27;</span>), </span><br><span class="line">(<span class="string">&#x27;John&#x27;</span>, <span class="number">82</span>): Int64Index([<span class="number">0</span>], dtype=<span class="string">&#x27;int64&#x27;</span>), </span><br><span class="line">(<span class="string">&#x27;Sona&#x27;</span>, <span class="number">91</span>): Int64Index([<span class="number">2</span>], dtype=<span class="string">&#x27;int64&#x27;</span>)&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="通过-get_group-方法可以选择组内的具体数据项">通过 get_group()
+方法可以选择组内的具体数据项：</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">data = &#123;<span class="string">&#x27;Name&#x27;</span>: [<span class="string">&#x27;John&#x27;</span>, <span class="string">&#x27;Helen&#x27;</span>, <span class="string">&#x27;Sona&#x27;</span>, <span class="string">&#x27;Ella&#x27;</span>],</span><br><span class="line">   <span class="string">&#x27;score&#x27;</span>: [<span class="number">82</span>, <span class="number">98</span>, <span class="number">91</span>, <span class="number">87</span>],</span><br><span class="line">   <span class="string">&#x27;option_course&#x27;</span>: [<span class="string">&#x27;C#&#x27;</span>,<span class="string">&#x27;Python&#x27;</span>,<span class="string">&#x27;Java&#x27;</span>,<span class="string">&#x27;C&#x27;</span>]&#125;</span><br><span class="line">df = pd.DataFrame(data)</span><br><span class="line"><span class="comment">#根据score来分组</span></span><br><span class="line">grouped=df.groupby(<span class="string">&#x27;score&#x27;</span>)</span><br><span class="line"><span class="comment">#根据对应组的数据值，选择一个组</span></span><br><span class="line">print(grouped.get_group(<span class="number">91</span>))</span><br><span class="line">   Name  score option_course</span><br><span class="line"><span class="number">2</span>  Sona     <span class="number">91</span>          Java</span><br></pre></td></tr></table></figure>
+<h2 id="合并">合并</h2>
+<p>使用 merge()<br />
+<code>pd.merge(left, right, how='inner', on=None, left_on=None, right_on=None,left_index=False, right_index=False, sort=True,suffixes=('_x', '_y'), copy=True)</code></p>
+<table>
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 93%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>参数名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>left/right</td>
+<td>两个不同的 DataFrame 对象。</td>
+</tr>
+<tr class="even">
+<td>on</td>
+<td>指定用于连接的键（即列标签的名字），该键必须同时存在于左右两个
+DataFrame 中，如果没有指定，并且其他参数也未指定， 那么将会以两个
+DataFrame 的列名交集做为连接键。</td>
+</tr>
+<tr class="odd">
+<td>left_on</td>
+<td>指定左侧 DataFrame
+中作连接键的列名。该参数在左、右列标签名不相同，但表达的含义相同时非常有用。</td>
+</tr>
+<tr class="even">
+<td>right_on</td>
+<td>指定左侧 DataFrame 中作连接键的列名。</td>
+</tr>
+<tr class="odd">
+<td>left_index</td>
+<td>布尔参数，默认为 False。如果为 True 则使用左侧 DataFrame
+的行索引作为连接键，若 DataFrame
+具有多层索引(MultiIndex)，则层的数量必须与连接键的数量相等。</td>
+</tr>
+<tr class="even">
+<td>right_index</td>
+<td>布尔参数，默认为 False。如果为 True 则使用左侧 DataFrame
+的行索引作为连接键。</td>
+</tr>
+<tr class="odd">
+<td>how</td>
+<td>要执行的合并类型，从 {'left', 'right', 'outer', 'inner'}
+中取值，默认为“inner”内连接。</td>
+</tr>
+<tr class="even">
+<td>sort</td>
+<td>布尔值参数，默认为True，它会将合并后的数据进行排序；若设置为
+False，则按照 how 给定的参数值进行排序。</td>
+</tr>
+<tr class="odd">
+<td>suffixes</td>
+<td>字符串组成的元组。当左右 DataFrame
+存在相同列名时，通过该参数可以在相同的列名后附加后缀名，默认为('_x','_y')。</td>
+</tr>
+<tr class="even">
+<td>copy</td>
+<td>默认为 True，表示对数据进行复制。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="excemple">Excemple</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd </span><br><span class="line">left = pd.DataFrame(&#123; </span><br><span class="line">   <span class="string">&#x27;id&#x27;</span>:[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>], </span><br><span class="line">   <span class="string">&#x27;Name&#x27;</span>: [<span class="string">&#x27;Smith&#x27;</span>, <span class="string">&#x27;Maiki&#x27;</span>, <span class="string">&#x27;Hunter&#x27;</span>, <span class="string">&#x27;Hilen&#x27;</span>], </span><br><span class="line">   <span class="string">&#x27;subject_id&#x27;</span>:[<span class="string">&#x27;sub1&#x27;</span>,<span class="string">&#x27;sub2&#x27;</span>,<span class="string">&#x27;sub4&#x27;</span>,<span class="string">&#x27;sub6&#x27;</span>]&#125;) </span><br><span class="line">right = pd.DataFrame(&#123; </span><br><span class="line">    <span class="string">&#x27;id&#x27;</span>:[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>], </span><br><span class="line">   <span class="string">&#x27;Name&#x27;</span>: [<span class="string">&#x27;William&#x27;</span>, <span class="string">&#x27;Albert&#x27;</span>, <span class="string">&#x27;Tony&#x27;</span>, <span class="string">&#x27;Allen&#x27;</span>], </span><br><span class="line">   <span class="string">&#x27;subject_id&#x27;</span>:[<span class="string">&#x27;sub2&#x27;</span>,<span class="string">&#x27;sub4&#x27;</span>,<span class="string">&#x27;sub3&#x27;</span>,<span class="string">&#x27;sub6&#x27;</span>]&#125;) </span><br><span class="line"><span class="built_in">print</span> (left) </span><br><span class="line"><span class="built_in">print</span> (right)  </span><br><span class="line">   <span class="built_in">id</span>    Name subject_id</span><br><span class="line"><span class="number">0</span>   <span class="number">1</span>   Smith       sub1</span><br><span class="line"><span class="number">1</span>   <span class="number">2</span>   Maiki       sub2</span><br><span class="line"><span class="number">2</span>   <span class="number">3</span>  Hunter       sub4</span><br><span class="line"><span class="number">3</span>   <span class="number">4</span>   Hilen       sub6</span><br><span class="line"></span><br><span class="line">   <span class="built_in">id</span>     Name subject_id</span><br><span class="line"><span class="number">0</span>   <span class="number">1</span>  William       sub2</span><br><span class="line"><span class="number">1</span>   <span class="number">2</span>   Albert       sub4</span><br><span class="line"><span class="number">2</span>   <span class="number">3</span>     Tony       sub3</span><br><span class="line"><span class="number">3</span>   <span class="number">4</span>    Allen       sub6</span><br><span class="line"></span><br><span class="line"><span class="comment">#通过on参数指定合并的键</span></span><br><span class="line">print(pd.merge(left,right,on=<span class="string">&#x27;id&#x27;</span>))</span><br><span class="line"></span><br><span class="line">   <span class="built_in">id</span>  Name_x subject_id_x   Name_y subject_id_y</span><br><span class="line"><span class="number">0</span>   <span class="number">1</span>   Smith         sub1  William         sub2</span><br><span class="line"><span class="number">1</span>   <span class="number">2</span>   Maiki         sub2   Albert         sub4</span><br><span class="line"><span class="number">2</span>   <span class="number">3</span>  Hunter         sub4     Tony         sub3</span><br><span class="line"><span class="number">3</span>   <span class="number">4</span>   Hilen         sub6    Allen         sub6</span><br><span class="line"><span class="comment">#多个键上合并</span></span><br><span class="line">print(pd.merge(left,right,on=[<span class="string">&#x27;id&#x27;</span>,<span class="string">&#x27;subject_id&#x27;</span>]))</span><br><span class="line">   <span class="built_in">id</span> Name_x subject_id Name_y</span><br><span class="line"><span class="number">0</span>   <span class="number">4</span>  Hilen       sub6   Mike</span><br></pre></td></tr></table></figure>
+<h4 id="how参数">How参数</h4>
+<table>
+<thead>
+<tr class="header">
+<th>Merge方法</th>
+<th>等效 SQL</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>left</td>
+<td>LEFT OUTER JOIN</td>
+<td>使用左侧对象的key</td>
+</tr>
+<tr class="even">
+<td>right</td>
+<td>RIGHT OUTER JOIN</td>
+<td>使用右侧对象的key</td>
+</tr>
+<tr class="odd">
+<td>outer</td>
+<td>FULL OUTER JOIN</td>
+<td>使用左右两侧所有key的并集</td>
+</tr>
+<tr class="even">
+<td>inner</td>
+<td>INNER JOIN</td>
+<td>使用左右两侧key的交集</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd </span><br><span class="line">left = pd.DataFrame(&#123; </span><br><span class="line">   <span class="string">&#x27;id&#x27;</span>:[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>], </span><br><span class="line">   <span class="string">&#x27;Name&#x27;</span>: [<span class="string">&#x27;Smith&#x27;</span>, <span class="string">&#x27;Maiki&#x27;</span>, <span class="string">&#x27;Hunter&#x27;</span>, <span class="string">&#x27;Hilen&#x27;</span>], </span><br><span class="line">   <span class="string">&#x27;subject_id&#x27;</span>:[<span class="string">&#x27;sub1&#x27;</span>,<span class="string">&#x27;sub2&#x27;</span>,<span class="string">&#x27;sub4&#x27;</span>,<span class="string">&#x27;sub6&#x27;</span>]&#125;) </span><br><span class="line">right = pd.DataFrame(&#123; </span><br><span class="line">    <span class="string">&#x27;id&#x27;</span>:[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>], </span><br><span class="line">   <span class="string">&#x27;Name&#x27;</span>: [<span class="string">&#x27;Bill&#x27;</span>, <span class="string">&#x27;Lucy&#x27;</span>, <span class="string">&#x27;Jack&#x27;</span>, <span class="string">&#x27;Mike&#x27;</span>], </span><br><span class="line">   <span class="string">&#x27;subject_id&#x27;</span>:[<span class="string">&#x27;sub2&#x27;</span>,<span class="string">&#x27;sub4&#x27;</span>,<span class="string">&#x27;sub3&#x27;</span>,<span class="string">&#x27;sub6&#x27;</span>]&#125;) </span><br><span class="line"><span class="comment">#以left侧的subject_id为键</span></span><br><span class="line">print(pd.merge(left,right,on=<span class="string">&#x27;subject_id&#x27;</span>,how=<span class="string">&quot;left&quot;</span>))</span><br><span class="line"></span><br><span class="line">   id_x  Name_x subject_id  id_y Name_y</span><br><span class="line"><span class="number">0</span>     <span class="number">1</span>   Smith       sub1   NaN    NaN</span><br><span class="line"><span class="number">1</span>     <span class="number">2</span>   Maiki       sub2   <span class="number">1.0</span>   Bill</span><br><span class="line"><span class="number">2</span>     <span class="number">3</span>  Hunter       sub4   <span class="number">2.0</span>   Lucy</span><br><span class="line"><span class="number">3</span>     <span class="number">4</span>   Hilen       sub6   <span class="number">4.0</span>   Mike</span><br><span class="line"></span><br><span class="line"><span class="comment">#以right侧的subject_id为键</span></span><br><span class="line">print(pd.merge(left,right,on=<span class="string">&#x27;subject_id&#x27;</span>,how=<span class="string">&quot;right&quot;</span>))</span><br><span class="line"></span><br><span class="line">   id_x  Name_x subject_id  id_y Name_y</span><br><span class="line"><span class="number">0</span>   <span class="number">2.0</span>   Maiki       sub2     <span class="number">1</span>   Bill</span><br><span class="line"><span class="number">1</span>   <span class="number">3.0</span>  Hunter       sub4     <span class="number">2</span>   Lucy</span><br><span class="line"><span class="number">2</span>   <span class="number">4.0</span>   Hilen       sub6     <span class="number">4</span>   Mike</span><br><span class="line"><span class="number">3</span>   NaN     NaN       sub3     <span class="number">3</span>   Jack</span><br><span class="line"></span><br><span class="line"><span class="comment">#求出两个subject_id的并集，并作为键</span></span><br><span class="line">print(pd.merge(left,right,on=<span class="string">&#x27;subject_id&#x27;</span>,how=<span class="string">&quot;outer&quot;</span>))</span><br><span class="line">   id_x  Name_x subject_id  id_y Name_y</span><br><span class="line"><span class="number">0</span>   <span class="number">1.0</span>   Smith       sub1   NaN    NaN</span><br><span class="line"><span class="number">1</span>   <span class="number">2.0</span>   Maiki       sub2   <span class="number">1.0</span>   Bill</span><br><span class="line"><span class="number">2</span>   <span class="number">3.0</span>  Hunter       sub4   <span class="number">2.0</span>   Lucy</span><br><span class="line"><span class="number">3</span>   <span class="number">4.0</span>   Hilen       sub6   <span class="number">4.0</span>   Mike</span><br><span class="line"><span class="number">4</span>   NaN     NaN       sub3   <span class="number">3.0</span>   Jack</span><br><span class="line"></span><br><span class="line"><span class="comment">#求出两个subject_id的交集，并将结果作为键</span></span><br><span class="line">print(pd.merge(left,right,on=<span class="string">&#x27;subject_id&#x27;</span>,how=<span class="string">&quot;inner&quot;</span>))</span><br><span class="line">   id_x  Name_x subject_id  id_y Name_y</span><br><span class="line"><span class="number">0</span>     <span class="number">2</span>   Maiki       sub2     <span class="number">1</span>   Bill</span><br><span class="line"><span class="number">1</span>     <span class="number">3</span>  Hunter       sub4     <span class="number">2</span>   Lucy</span><br><span class="line"><span class="number">2</span>     <span class="number">4</span>   Hilen       sub6     <span class="number">4</span>   Mike</span><br></pre></td></tr></table></figure>
+<h2 id="concat连接">concat连接</h2>
+<p><code>pd.concat(objs,axis=0,join='outer',join_axes=None,ignore_index=False)</code></p>
+<table>
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 87%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>参数名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>objs</td>
+<td>一个序列或者是Series、DataFrame对象。</td>
+</tr>
+<tr class="even">
+<td>axis</td>
+<td>表示在哪个轴方向上（行或者列）进行连接操作，默认 axis=0
+表示行方向。</td>
+</tr>
+<tr class="odd">
+<td>join</td>
+<td>指定连接方式，取值为{"inner","outer"}，默认为 outer
+表示取并集，inner代表取交集。</td>
+</tr>
+<tr class="even">
+<td>ignore_index</td>
+<td>布尔值参数，默认为 False，如果为
+True，表示不在连接的轴上使用索引。</td>
+</tr>
+<tr class="odd">
+<td>join_axes</td>
+<td>表示索引对象的列表。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="excemple-1">Excemple</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">a= pd.DataFrame(&#123;<span class="string">&#x27;A&#x27;</span>: [<span class="string">&#x27;A0&#x27;</span>, <span class="string">&#x27;A1&#x27;</span>, <span class="string">&#x27;A2&#x27;</span>, <span class="string">&#x27;A3&#x27;</span>],</span><br><span class="line">                    <span class="string">&#x27;B&#x27;</span>: [<span class="string">&#x27;B0&#x27;</span>, <span class="string">&#x27;B1&#x27;</span>, <span class="string">&#x27;B2&#x27;</span>, <span class="string">&#x27;B3&#x27;</span>],</span><br><span class="line">                    <span class="string">&#x27;C&#x27;</span>: [<span class="string">&#x27;C0&#x27;</span>, <span class="string">&#x27;C1&#x27;</span>, <span class="string">&#x27;C2&#x27;</span>, <span class="string">&#x27;C3&#x27;</span>],</span><br><span class="line">                    <span class="string">&#x27;D&#x27;</span>: [<span class="string">&#x27;D0&#x27;</span>, <span class="string">&#x27;D1&#x27;</span>, <span class="string">&#x27;D2&#x27;</span>, <span class="string">&#x27;D3&#x27;</span>]&#125;,</span><br><span class="line">                    index=[<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line">b= pd.DataFrame(&#123;<span class="string">&#x27;A&#x27;</span>: [<span class="string">&#x27;A4&#x27;</span>, <span class="string">&#x27;A5&#x27;</span>, <span class="string">&#x27;A6&#x27;</span>, <span class="string">&#x27;A7&#x27;</span>],</span><br><span class="line">                    <span class="string">&#x27;B&#x27;</span>: [<span class="string">&#x27;B4&#x27;</span>, <span class="string">&#x27;B5&#x27;</span>, <span class="string">&#x27;B6&#x27;</span>, <span class="string">&#x27;B7&#x27;</span>],</span><br><span class="line">                    <span class="string">&#x27;C&#x27;</span>: [<span class="string">&#x27;C4&#x27;</span>, <span class="string">&#x27;C5&#x27;</span>, <span class="string">&#x27;C6&#x27;</span>, <span class="string">&#x27;C7&#x27;</span>],</span><br><span class="line">                    <span class="string">&#x27;D&#x27;</span>: [<span class="string">&#x27;D4&#x27;</span>, <span class="string">&#x27;D5&#x27;</span>, <span class="string">&#x27;D6&#x27;</span>, <span class="string">&#x27;D7&#x27;</span>]&#125;,</span><br><span class="line">                   index=[<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>])</span><br><span class="line"><span class="comment">#连接a与b</span></span><br><span class="line">print(pd.concat([a,b]))  和append()相似</span><br><span class="line">    A   B   C   D</span><br><span class="line"><span class="number">0</span>  A0  B0  C0  D0</span><br><span class="line"><span class="number">1</span>  A1  B1  C1  D1</span><br><span class="line"><span class="number">2</span>  A2  B2  C2  D2</span><br><span class="line"><span class="number">3</span>  A3  B3  C3  D3</span><br><span class="line"><span class="number">2</span>  A4  B4  C4  D4</span><br><span class="line"><span class="number">3</span>  A5  B5  C5  D5</span><br><span class="line"><span class="number">4</span>  A6  B6  C6  D6</span><br><span class="line"><span class="number">5</span>  A7  B7  C7  D7</span><br><span class="line"></span><br><span class="line"><span class="comment">#连接a与b,并给a，b连接一个指定的键</span></span><br><span class="line">print(pd.concat([a,b],keys=[<span class="string">&#x27;x&#x27;</span>,<span class="string">&#x27;y&#x27;</span>]))</span><br><span class="line">      A   B   C   D</span><br><span class="line">x <span class="number">0</span>  A0  B0  C0  D0</span><br><span class="line">  <span class="number">1</span>  A1  B1  C1  D1</span><br><span class="line">  <span class="number">2</span>  A2  B2  C2  D2</span><br><span class="line">  <span class="number">3</span>  A3  B3  C3  D3</span><br><span class="line">y <span class="number">2</span>  A4  B4  C4  D1</span><br><span class="line">  <span class="number">3</span>  A5  B5  C5  D2</span><br><span class="line">  <span class="number">4</span>  A6  B6  C6  D5</span><br><span class="line">  <span class="number">5</span>  A7  B7  C7  D6</span><br><span class="line"></span><br><span class="line"><span class="comment">#连接a与b,设置 ignore_index 等于 True</span></span><br><span class="line">print(pd.concat([a,b],keys=[<span class="string">&#x27;x&#x27;</span>,<span class="string">&#x27;y&#x27;</span>],ignore_index=<span class="literal">True</span>))</span><br><span class="line"></span><br><span class="line">输出结果：</span><br><span class="line">    A   B   C   D</span><br><span class="line"><span class="number">0</span>  A0  B0  C0  D0</span><br><span class="line"><span class="number">1</span>  A1  B1  C1  D1</span><br><span class="line"><span class="number">2</span>  A2  B2  C2  D2</span><br><span class="line"><span class="number">3</span>  A3  B3  C3  D3</span><br><span class="line"><span class="number">4</span>  A4  B4  C4  D1</span><br><span class="line"><span class="number">5</span>  A5  B5  C5  D2</span><br><span class="line"><span class="number">6</span>  A6  B6  C6  D5</span><br><span class="line"><span class="number">7</span>  A7  B7  C7  D6</span><br><span class="line">此时的索引顺序被改变了，而且键 keys 指定的键也被覆盖了。</span><br><span class="line"></span><br><span class="line"><span class="comment">#沿着 axis=1，连接a与b</span></span><br><span class="line">print(pd.concat([a,b],axis=<span class="number">1</span>))</span><br><span class="line"></span><br><span class="line">     A    B    C    D    A    B    C    D</span><br><span class="line"><span class="number">0</span>   A0   B0   C0   D0  NaN  NaN  NaN  NaN</span><br><span class="line"><span class="number">1</span>   A1   B1   C1   D1  NaN  NaN  NaN  NaN</span><br><span class="line"><span class="number">2</span>   A2   B2   C2   D2  NaN  NaN  NaN  NaN</span><br><span class="line"><span class="number">3</span>   A3   B3   C3   D3  NaN  NaN  NaN  NaN</span><br><span class="line"><span class="number">2</span>  NaN  NaN  NaN  NaN   A4   B4   C4   D1</span><br><span class="line"><span class="number">3</span>  NaN  NaN  NaN  NaN   A5   B5   C5   D2</span><br><span class="line"><span class="number">4</span>  NaN  NaN  NaN  NaN   A6   B6   C6   D5</span><br><span class="line"><span class="number">5</span>  NaN  NaN  NaN  NaN   A7   B7   C7   D6</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Yuhang Chen</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://waterkingest.gitee.io/2022/03/23/pandas2/">http://waterkingest.gitee.io/2022/03/23/pandas2/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Python/">Python</a><a class="post-meta__tags" href="/tags/Study/">Study</a><a class="post-meta__tags" href="/tags/Data/">Data</a><a class="post-meta__tags" href="/tags/Pandas/">Pandas</a></div><div class="post_share"><div class="social-share" data-image="https://www.runoob.com/wp-content/uploads/2021/04/pandas.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> Donate</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/WeChanSQ.png" target="_blank"><img class="post-qr-code-img" src="/img/WeChanSQ.png" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/img/AliPayQR.png" target="_blank"><img class="post-qr-code-img" src="/img/AliPayQR.png" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/03/23/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/"><img class="prev-cover" src="/img/favicon.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">快速排序</div></div></a></div><div class="next-post pull-right"><a href="/2022/03/23/pandas/"><img class="next-cover" src="https://www.runoob.com/wp-content/uploads/2021/04/pandas.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Pandas用法（一）</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2022/03/23/pandas/" title="Pandas用法（一）"><img class="cover" src="https://www.runoob.com/wp-content/uploads/2021/04/pandas.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-23</div><div class="title">Pandas用法（一）</div></div></a></div><div><a href="/2022/03/22/Selenium/" title="Selenium使用手册"><img class="cover" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fbkimg.cdn.bcebos.com%2Fpic%2F279759ee3d6d55fb3cfdd81761224f4a20a4ddcc&refer=http%3A%2F%2Fbkimg.cdn.bcebos.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1650506145&t=31abef05e1dc237fda46baf33bbadf6b" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-22</div><div class="title">Selenium使用手册</div></div></a></div><div><a href="/2022/03/21/words-memory/" title="背单词小脚本"><img class="cover" src="/img/favicon.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-21</div><div class="title">背单词小脚本</div></div></a></div><div><a href="/2022/03/23/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" title="快速排序"><img class="cover" src="/img/favicon.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-23</div><div class="title">快速排序</div></div></a></div><div><a href="/2022/03/26/water-extract/" title="Water_Extracting"><img class="cover" src="https://cdn.jsdelivr.net/gh/waterkingest/image_bed@master/20220326/pytorch.5sb4sp2wouc0.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-26</div><div class="title">Water_Extracting</div></div></a></div><div><a href="/2022/03/24/%E5%A0%86%E6%8E%92%E5%BA%8F/" title="堆排序"><img class="cover" src="/img/favicon.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-24</div><div class="title">堆排序</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/favicon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Yuhang Chen</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">30</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">25</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">5</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/waterkingest"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/waterkingest" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:yuhangchen0425@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="http://wpa.qq.com/msgrd?v=3&amp;uin=727466381&amp;site=qq&amp;menu=yes" target="_blank" title="QQ"><i class="fa-brands fa-qq"></i></a><a class="social-icon" href="https://www.linkedin.com/in/yuhangchen1" target="_blank" title="Linkedin"><i class="fa-brands fa-linkedin"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E5%91%BD%E5%90%8D%E6%A0%87%E7%AD%BE-%E7%94%A8-rename"><span class="toc-number">1.</span> <span class="toc-text">重命名标签 用 rename()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%92%E5%BA%8F"><span class="toc-number"></span> <span class="toc-text">排序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%89%E6%A0%87%E7%AD%BE%E6%8E%92%E5%BA%8F"><span class="toc-number">1.</span> <span class="toc-text">按标签排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">排序算法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%BB%E9%87%8D"><span class="toc-number"></span> <span class="toc-text">去重</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%84%E7%90%86%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-number"></span> <span class="toc-text">处理字符串的方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E7%BB%84%E6%93%8D%E4%BD%9C"><span class="toc-number"></span> <span class="toc-text">分组操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E8%BF%87-get_group-%E6%96%B9%E6%B3%95%E5%8F%AF%E4%BB%A5%E9%80%89%E6%8B%A9%E7%BB%84%E5%86%85%E7%9A%84%E5%85%B7%E4%BD%93%E6%95%B0%E6%8D%AE%E9%A1%B9"><span class="toc-number">1.</span> <span class="toc-text">通过 get_group()
+方法可以选择组内的具体数据项：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%88%E5%B9%B6"><span class="toc-number"></span> <span class="toc-text">合并</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#excemple"><span class="toc-number">1.</span> <span class="toc-text">Excemple</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#how%E5%8F%82%E6%95%B0"><span class="toc-number">1.1.</span> <span class="toc-text">How参数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#concat%E8%BF%9E%E6%8E%A5"><span class="toc-number"></span> <span class="toc-text">concat连接</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#excemple-1"><span class="toc-number">1.</span> <span class="toc-text">Excemple</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/09/27/ENCS-6201-quize-review/" title="ENCS 6201 quize review"><img src="/img/favicon.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ENCS 6201 quize review"/></a><div class="content"><a class="title" href="/2023/09/27/ENCS-6201-quize-review/" title="ENCS 6201 quize review">ENCS 6201 quize review</a><time datetime="2023-09-27T19:39:56.000Z" title="Created 2023-09-27 15:39:56">2023-09-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/09/26/Software-Engineering/" title="Software Engineering"><img src="https://m.media-amazon.com/images/I/71HiyCm3Y6L._SY522_.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Software Engineering"/></a><div class="content"><a class="title" href="/2023/09/26/Software-Engineering/" title="Software Engineering">Software Engineering</a><time datetime="2023-09-26T18:47:45.000Z" title="Created 2023-09-26 14:47:45">2023-09-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/08/24/Linear-Algebra/" title="Linear_Algebra"><img src="/img/favicon.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Linear_Algebra"/></a><div class="content"><a class="title" href="/2023/08/24/Linear-Algebra/" title="Linear_Algebra">Linear_Algebra</a><time datetime="2023-08-24T15:44:13.000Z" title="Created 2023-08-24 11:44:13">2023-08-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/07/01/linear-System/" title="linear System"><img src="/img/favicon.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="linear System"/></a><div class="content"><a class="title" href="/2023/07/01/linear-System/" title="linear System">linear System</a><time datetime="2023-07-01T14:08:16.000Z" title="Created 2023-07-01 10:08:16">2023-07-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/12/23/Pygame-1/" title="Pygame(1)"><img src="https://www.pygame.org/ftp/pygame-head-party.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Pygame(1)"/></a><div class="content"><a class="title" href="/2022/12/23/Pygame-1/" title="Pygame(1)">Pygame(1)</a><time datetime="2022-12-23T14:45:20.000Z" title="Created 2022-12-23 09:45:20">2022-12-23</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2023 By Yuhang Chen</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a rel="nofollow noopener"><span>YH </span></a><i class="iconfont icon-heart"></i><a rel="nofollow noopener"><span> GC</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Local search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'IwM9Wemmu4uk5ntEPJfWrdpr-gzGzoHsz',
+      appKey: 'JfMdF85ef98TICFdMwWhbc3m',
+      avatar: 'monsterid',
+      serverURLs: '',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><div class="aplayer no-destroy" data-id="7422861869" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="true"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,0" opacity="0.9" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="music"]):not([href="secret"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
