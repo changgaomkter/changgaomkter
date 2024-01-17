@@ -4,11 +4,40 @@
   
     
     <entry>
+      <title>Robotics</title>
+      <link href="/2024/01/16/Robotics/"/>
+      <url>/2024/01/16/Robotics/</url>
+      
+        <content type="html"><![CDATA[<h2 id="norm"><strong>Norm</strong></h2><p><spanclass="math display">\[\|\mathbf{x}\|_{p}=\left(\sum_{i=1}^{N}\left|x_{i}\right|^{p}\right)^{\frac{1}{p}}\]</span>+ <strong>One-norm</strong> :<br /><spanclass="math display">\[\|x\|_{1}=\sum_{i=1}^{N}\left|x_{i}\right|\]</span>+ <strong>Euclidean norm</strong>(L2-norm) :<br /><span class="math display">\[\|x\|_{2}=\left(\sum_{i=1}^{N}x_{i}^{2}\right)^{\frac{1}{2}}\]</span></p><ul><li><strong>Maximum norm</strong>: <spanclass="math display">\[\|x\|_{∞}=\max_{i}\left|x_{i}\right|\]</span></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Notes </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Study </tag>
+            
+            <tag> AI </tag>
+            
+            <tag> Robotics </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Neural_Network</title>
       <link href="/2024/01/07/Neural-Network/"/>
       <url>/2024/01/07/Neural-Network/</url>
       
-        <content type="html"><![CDATA[<h1 id="perceptons感知机">Perceptons(感知机)</h1><p><imgsrc="https://cdn.jsdelivr.net/gh/waterkingest/image_bed@master/20240113/image.5zu3ucp2rps0.webp"alt="感知机" /> input is 0 or 1, output is 0 or 1. + thresholdvalue(阈值) + weights(权重) + bias(偏置) : measure of how easy it is toget the perceptron to output a 1</p><h1 id="sigmoid-neuron.">sigmoid neuron.</h1><p><imgsrc="https://cdn.jsdelivr.net/gh/waterkingest/image_bed@master/image.3llmv69lqrg0.webp"alt="sigmoid neuron" /> Just like a perceptron, the sigmoid neuron hasinputs, x1,x2,… . But instead of being just 0 or 1 , these inputs canalso take on any values between 0 and 1 . So, for instance, 0.638… is avalid input for a sigmoid neuron. Output is between 0 and 1.</p><p><span class="math display">\[ \begin{eqnarray}  \sigma(z) \equiv \frac{1}{1+e^{-z}}.\end{eqnarray}\]</span></p>]]></content>
+        <content type="html"><![CDATA[<h1 id="perceptons感知机">Perceptons(感知机)</h1><p><imgsrc="https://cdn.jsdelivr.net/gh/waterkingest/image_bed@master/20240113/image.5zu3ucp2rps0.webp"alt="感知机" /> input is 0 or 1, output is 0 or 1. + thresholdvalue(阈值) + weights(权重) + bias(偏置) : measure of how easy it is toget the perceptron to output a 1</p><h1 id="sigmoid-neuron.">sigmoid neuron.</h1><figure><imgsrc="https://cdn.jsdelivr.net/gh/waterkingest/image_bed@master/image.3llmv69lqrg0.webp"alt="sigmoid neuron" /><figcaption aria-hidden="true">sigmoid neuron</figcaption></figure><p><imgsrc="https://cdn.jsdelivr.net/gh/waterkingest/image_bed@master/20240116/image.6yxhxx2f9240.webp"alt="sigmoid Function" /> Just like a perceptron, the sigmoid neuron hasinputs, x1,x2,… . But instead of being just 0 or 1 , these inputs canalso take on any values between 0 and 1 . So, for instance, 0.638… is avalid input for a sigmoid neuron. Output is between 0 and 1.</p><p><span class="math display">\[ \begin{eqnarray}  \sigma(z) \equiv \frac{1}{1+e^{-z}}.\end{eqnarray}\]</span></p>]]></content>
       
       
       <categories>
