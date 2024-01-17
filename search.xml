@@ -8,7 +8,7 @@
       <link href="/2024/01/16/Robotics/"/>
       <url>/2024/01/16/Robotics/</url>
       
-        <content type="html"><![CDATA[<h2 id="norm"><strong>Norm</strong></h2><p><spanclass="math display">\[\|\mathbf{x}\|_{p}=\left(\sum_{i=1}^{N}\left|x_{i}\right|^{p}\right)^{\frac{1}{p}}\]</span>+ <strong>One-norm</strong> :<br /><spanclass="math display">\[\|x\|_{1}=\sum_{i=1}^{N}\left|x_{i}\right|\]</span>+ <strong>Euclidean norm</strong>(L2-norm) :<br /><span class="math display">\[\|x\|_{2}=\left(\sum_{i=1}^{N}x_{i}^{2}\right)^{\frac{1}{2}}\]</span></p><ul><li><strong>Maximum norm</strong>: <spanclass="math display">\[\|x\|_{∞}=\max_{i}\left|x_{i}\right|\]</span></li></ul>]]></content>
+        <content type="html"><![CDATA[<h2 id="norm"><strong>Norm</strong></h2><p><spanclass="math display">\[\|\mathbf{x}\|_{p}=\left(\sum_{i=1}^{N}\left|x_{i}\right|^{p}\right)^{\frac{1}{p}}\]</span></p><ul><li><p><strong>One-norm</strong> :<br /><spanclass="math display">\[\|x\|_{1}=\sum_{i=1}^{N}\left|x_{i}\right|\]</span></p></li><li><p><strong>Euclidean norm</strong>(L2-norm) :<br /><span class="math display">\[\|x\|_{2}=\left(\sum_{i=1}^{N}x_{i}^{2}\right)^{\frac{1}{2}}\]</span></p></li><li><p><strong>Maximum norm</strong>: <spanclass="math display">\[\|x\|_{∞}=\max_{i}\left|x_{i}\right|\]</span></p></li></ul>]]></content>
       
       
       <categories>
@@ -49,9 +49,9 @@
       
         <tags>
             
-            <tag> Study </tag>
-            
             <tag> Python </tag>
+            
+            <tag> Study </tag>
             
             <tag> AI </tag>
             
@@ -80,9 +80,9 @@
       
         <tags>
             
-            <tag> Study </tag>
-            
             <tag> Python </tag>
+            
+            <tag> Study </tag>
             
             <tag> algorithm </tag>
             
@@ -219,9 +219,9 @@
       
         <tags>
             
-            <tag> Study </tag>
-            
             <tag> Python </tag>
+            
+            <tag> Study </tag>
             
             <tag> Pygame </tag>
             
@@ -497,9 +497,9 @@
       
         <tags>
             
-            <tag> Study </tag>
-            
             <tag> Python </tag>
+            
+            <tag> Study </tag>
             
             <tag> algorithm </tag>
             
@@ -528,9 +528,9 @@
       
         <tags>
             
-            <tag> Study </tag>
-            
             <tag> Python </tag>
+            
+            <tag> Study </tag>
             
             <tag> algorithm </tag>
             
@@ -557,9 +557,9 @@
       
         <tags>
             
-            <tag> Study </tag>
-            
             <tag> Python </tag>
+            
+            <tag> Study </tag>
             
             <tag> DJango </tag>
             
@@ -588,9 +588,9 @@
       
         <tags>
             
-            <tag> Study </tag>
-            
             <tag> Python </tag>
+            
+            <tag> Study </tag>
             
             <tag> DJango </tag>
             
@@ -663,9 +663,9 @@
       
         <tags>
             
-            <tag> Study </tag>
-            
             <tag> Python </tag>
+            
+            <tag> Study </tag>
             
             <tag> Pytorch </tag>
             
@@ -696,9 +696,9 @@
       
         <tags>
             
-            <tag> Study </tag>
-            
             <tag> Python </tag>
+            
+            <tag> Study </tag>
             
             <tag> algorithm </tag>
             
@@ -725,9 +725,9 @@
       
         <tags>
             
-            <tag> Study </tag>
-            
             <tag> Python </tag>
+            
+            <tag> Study </tag>
             
             <tag> algorithm </tag>
             
@@ -754,9 +754,9 @@
       
         <tags>
             
-            <tag> Study </tag>
-            
             <tag> Python </tag>
+            
+            <tag> Study </tag>
             
             <tag> Data </tag>
             
@@ -785,9 +785,9 @@
       
         <tags>
             
-            <tag> Study </tag>
-            
             <tag> Python </tag>
+            
+            <tag> Study </tag>
             
             <tag> Data </tag>
             
@@ -816,9 +816,9 @@
       
         <tags>
             
-            <tag> Study </tag>
-            
             <tag> Python </tag>
+            
+            <tag> Study </tag>
             
             <tag> 爬虫 </tag>
             
@@ -845,9 +845,9 @@
       
         <tags>
             
-            <tag> Study </tag>
-            
             <tag> Python </tag>
+            
+            <tag> Study </tag>
             
         </tags>
       
