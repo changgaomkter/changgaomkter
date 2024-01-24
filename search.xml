@@ -8,7 +8,7 @@
       <link href="/2024/01/16/Robotics/"/>
       <url>/2024/01/16/Robotics/</url>
       
-        <content type="html"><![CDATA[<h2 id="norm"><strong>Norm</strong></h2><p><spanclass="math display">\[\|\mathbf{x}\|_{p}=\left(\sum_{i=1}^{N}\left|x_{i}\right|^{p}\right)^{\frac{1}{p}}\]</span></p><ul><li><p><strong>One-norm</strong> :<br /><spanclass="math display">\[\|x\|_{1}=\sum_{i=1}^{N}\left|x_{i}\right|\]</span></p></li><li><p><strong>Euclidean norm</strong>(L2-norm) :<br /><span class="math display">\[\|x\|_{2}=\left(\sum_{i=1}^{N}x_{i}^{2}\right)^{\frac{1}{2}}\]</span></p></li><li><p><strong>Maximum norm</strong>: <spanclass="math display">\[\|x\|_{∞}=\max_{i}\left|x_{i}\right|\]</span></p></li></ul>]]></content>
+        <content type="html"><![CDATA[<h2 id="norm"><strong>Norm</strong></h2><p><spanclass="math display">\[\|\mathbf{x}\|_{p}=\left(\sum_{i=1}^{N}\left|x_{i}\right|^{p}\right)^{\frac{1}{p}}\]</span></p><ul><li><p><strong>One-norm</strong> :<br /><spanclass="math display">\[\|x\|_{1}=\sum_{i=1}^{N}\left|x_{i}\right|\]</span></p></li><li><p><strong>Euclidean norm</strong>(L2-norm) :<br /><span class="math display">\[\|x\|_{2}=\left(\sum_{i=1}^{N}x_{i}^{2}\right)^{\frac{1}{2}}\]</span></p></li><li><p><strong>Maximum norm</strong>: <spanclass="math display">\[\|x\|_{∞}=\max_{i}\left|x_{i}\right|\]</span></p></li></ul><h2 id="spatial-descriptions">Spatial Descriptions</h2><h3 id="rotation-matrix">Rotation matrix</h3><p><span class="math display">\[^A_BR = \left[ ^AX_B, ^AY_B, ^AZ_B \right] =\begin{bmatrix}X_B \cdot X_A &amp; Y_B \cdot X_A &amp; Z_B \cdot X_A \\X_B \cdot Y_A &amp; Y_B \cdot Y_A &amp; Z_B \cdot Y_A \\X_B \cdot Z_A &amp; Y_B \cdot Z_A &amp; Z_B \cdot Z_A \\\end{bmatrix}\]</span></p><h3 id="homogeneous-transform">Homogeneous transform</h3><p><span class="math display">\[\begin{bmatrix}^AP \\1\end{bmatrix} = \begin{bmatrix}    \begin{array}{ccc|c}        &amp;^A_BR&amp;  &amp; ^AP_{BORG} \\        \hline        0&amp; 0&amp; 0 &amp; 1 \\    \end{array}\end{bmatrix}\begin{bmatrix}^BP \\1\end{bmatrix}\]</span></p>$$ ^A_BT =<span class="math display">\[\begin{bmatrix}    \begin{array}{ccc|c}        &amp;^A_BR&amp;  &amp; ^AP_{BORG} \\        \hline        0&amp; 0&amp; 0 &amp; 1 \\    \end{array}\end{bmatrix}\]</span><p>$$</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sympy <span class="keyword">as</span> sp</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">translate_matrix</span>(<span class="params">dx, dy, dz</span>):</span></span><br><span class="line">    <span class="keyword">return</span> sp.Matrix([[<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, dx],</span><br><span class="line">              [<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, dy],</span><br><span class="line">              [<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, dz],</span><br><span class="line">              [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>]])</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">rotate_matrix_by_fixed_angles</span>(<span class="params">roll, pitch, yaw</span>):</span></span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">    Step1: Rx</span></span><br><span class="line"><span class="string">    Step2: Ry</span></span><br><span class="line"><span class="string">    Step3: Rz</span></span><br><span class="line"><span class="string">    &#x27;&#x27;&#x27;</span></span><br><span class="line">    Rx = sp.Matrix([[<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">            [<span class="number">0</span>, sp.cos(roll), -sp.sin(roll), <span class="number">0</span>],</span><br><span class="line">            [<span class="number">0</span>, sp.sin(roll), sp.cos(roll), <span class="number">0</span>],</span><br><span class="line">            [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>]])</span><br><span class="line">    </span><br><span class="line">    Ry = sp.Matrix([[sp.cos(pitch), <span class="number">0</span>, sp.sin(pitch), <span class="number">0</span>],</span><br><span class="line">            [<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">            [-sp.sin(pitch), <span class="number">0</span>, sp.cos(pitch), <span class="number">0</span>],</span><br><span class="line">            [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>]])</span><br><span class="line">    </span><br><span class="line">    Rz = sp.Matrix([[sp.cos(yaw), -sp.sin(yaw), <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">            [sp.sin(yaw), sp.cos(yaw), <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">            [<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">            [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>]])</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> Rz * Ry * Rx</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">rotate_by_euler_angles</span>(<span class="params">gamma, beta, alpha</span>):</span></span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">    Step1: Rz</span></span><br><span class="line"><span class="string">    Step2: Ry</span></span><br><span class="line"><span class="string">    Step3: Rx</span></span><br><span class="line"><span class="string">    &#x27;&#x27;&#x27;</span></span><br><span class="line">    Rx = sp.Matrix([[<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">            [<span class="number">0</span>, sp.cos(gamma), -sp.sin(gamma), <span class="number">0</span>],</span><br><span class="line">            [<span class="number">0</span>, sp.sin(gamma), sp.cos(gamma), <span class="number">0</span>],</span><br><span class="line">            [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>]])</span><br><span class="line">    </span><br><span class="line">    Ry = sp.Matrix([[sp.cos(beta), <span class="number">0</span>, sp.sin(beta), <span class="number">0</span>],</span><br><span class="line">            [<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">            [-sp.sin(beta), <span class="number">0</span>, sp.cos(beta), <span class="number">0</span>],</span><br><span class="line">            [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>]])</span><br><span class="line">    </span><br><span class="line">    Rz = sp.Matrix([[sp.cos(alpha), -sp.sin(alpha), <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">            [sp.sin(alpha), sp.cos(alpha), <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">            [<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">            [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>]])</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> Rz * Ry * Rx</span><br><span class="line"></span><br><span class="line">dx, dy, dz = sp.symbols(<span class="string">&#x27;dx dy dz&#x27;</span>)</span><br><span class="line">roll, pitch, yaw = sp.symbols(<span class="string">&#x27;gamma beta alpha&#x27;</span>)</span><br><span class="line">gamma, beta, alpha = sp.symbols(<span class="string">&#x27;gamma beta alpha&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Shift</span></span><br><span class="line">translation_matrix_symbolic = translate_matrix(dx, dy, dz)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Rotaion</span></span><br><span class="line">rotation_matrix_by_fixed_angles = rotate_matrix_by_fixed_angles(roll, pitch, yaw)</span><br><span class="line">rotation_matrix_by_euler_angles = rotate_by_euler_angles(gamma, beta, alpha)</span><br><span class="line"></span><br><span class="line"><span class="comment"># combine</span></span><br><span class="line">transformation_matrix_fixed_angles = translation_matrix_symbolic * rotation_matrix_by_fixed_angles</span><br><span class="line">transformation_matrix_euler_angles = translation_matrix_symbolic * rotation_matrix_by_euler_angles</span><br><span class="line"></span><br><span class="line"><span class="comment"># input_values</span></span><br><span class="line">input_values = &#123;dx: <span class="number">1</span>, dy: <span class="number">2</span>, dz: <span class="number">3</span>, roll: sp.rad(<span class="number">30</span>), pitch: sp.rad(<span class="number">30</span>), yaw: sp.rad(<span class="number">60</span>),\</span><br><span class="line">                gamma: sp.rad(<span class="number">30</span>), beta: sp.rad(<span class="number">30</span>), alpha: sp.rad(<span class="number">60</span>)&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># calculate</span></span><br><span class="line">result_fixed_angles = rotation_matrix_by_fixed_angles.subs(input_values)</span><br><span class="line">result_euler_angles = rotation_matrix_by_euler_angles.subs(input_values)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">print(<span class="string">&quot;Transformation Matrix (Fixed Angles):&quot;</span>)</span><br><span class="line">sp.pprint(transformation_matrix_fixed_angles, use_unicode=<span class="literal">True</span>)</span><br><span class="line">print(<span class="string">&#x27;----------------&#x27;</span>)</span><br><span class="line"></span><br><span class="line">print(<span class="string">&quot;\nTransformation Matrix (Euler Angles):&quot;</span>)</span><br><span class="line">sp.pprint(transformation_matrix_euler_angles, use_unicode=<span class="literal">True</span>)</span><br><span class="line">print(<span class="string">&#x27;----------------&#x27;</span>)</span><br><span class="line"></span><br><span class="line">print(<span class="string">&quot;\nTransformation Matrix (Fixed Angles, Result):&quot;</span>)</span><br><span class="line">sp.pprint(result_fixed_angles, use_unicode=<span class="literal">True</span>)</span><br><span class="line">print(<span class="string">&#x27;----------------&#x27;</span>)</span><br><span class="line">print(<span class="string">&quot;\nTransformation Matrix (Euler Angles, Result):&quot;</span>)</span><br><span class="line">sp.pprint(result_euler_angles, use_unicode=<span class="literal">True</span>)</span><br><span class="line">print(<span class="string">&#x27;----------------&#x27;</span>)</span><br></pre></td></tr></table></figure><ul><li>Result</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">Transformation Matrix (Fixed Angles):</span><br><span class="line">⎡cos(α)⋅cos(β)  -sin(α)⋅cos(γ) + sin(β)⋅sin(γ)⋅cos(α)  sin(α)⋅sin(γ) + sin(β)⋅cos(α)⋅cos(γ)  dx   ⎤</span><br><span class="line">⎢                                                                                              ⎥</span><br><span class="line">⎢sin(α)⋅cos(β)  sin(α)⋅sin(β)⋅sin(γ) + cos(α)⋅cos(γ)   sin(α)⋅sin(β)⋅cos(γ) - sin(γ)⋅cos(α)  dy   ⎥</span><br><span class="line">⎢                                                                                              ⎥</span><br><span class="line">⎢   -sin(β)                 sin(γ)⋅cos(β)                         cos(β)⋅cos(γ)              dz ⎥</span><br><span class="line">⎢                                                                                              ⎥</span><br><span class="line">⎣      0                          0                                     0                    1 ⎦</span><br><span class="line">----------------</span><br><span class="line"></span><br><span class="line">Transformation Matrix (Euler Angles):</span><br><span class="line">⎡cos(α)⋅cos(β)  -sin(α)⋅cos(γ) + sin(β)⋅sin(γ)⋅cos(α)  sin(α)⋅sin(γ) + sin(β)⋅cos(α)⋅cos(γ)  dx   ⎤</span><br><span class="line">⎢                                                                                              ⎥</span><br><span class="line">⎢sin(α)⋅cos(β)  sin(α)⋅sin(β)⋅sin(γ) + cos(α)⋅cos(γ)   sin(α)⋅sin(β)⋅cos(γ) - sin(γ)⋅cos(α)  dy   ⎥</span><br><span class="line">⎢                                                                                              ⎥</span><br><span class="line">⎢   -sin(β)                 sin(γ)⋅cos(β)                         cos(β)⋅cos(γ)              dz ⎥</span><br><span class="line">⎢                                                                                              ⎥</span><br><span class="line">⎣      0                          0                                     0                    1 ⎦</span><br><span class="line">----------------</span><br><span class="line"></span><br><span class="line">Transformation Matrix (Fixed Angles, Result):</span><br><span class="line">⎡ √3         3⋅√3   ⎤</span><br><span class="line">⎢ ──   -5&#x2F;8  ────  0⎥</span><br><span class="line">⎢ 4           8     ⎥</span><br><span class="line">⎢                   ⎥</span><br><span class="line">⎢      3⋅√3         ⎥</span><br><span class="line">⎢3&#x2F;4   ────  1&#x2F;8   0⎥</span><br><span class="line">⎢       8           ⎥</span><br><span class="line">⎢                   ⎥</span><br><span class="line">⎢       √3          ⎥</span><br><span class="line">⎢-1&#x2F;2   ──   3&#x2F;4   0⎥</span><br><span class="line">⎢       4           ⎥</span><br><span class="line">⎢                   ⎥</span><br><span class="line">⎣ 0     0     0    1⎦</span><br><span class="line">----------------</span><br><span class="line"></span><br><span class="line">Transformation Matrix (Euler Angles, Result):</span><br><span class="line">⎡ √3         3⋅√3   ⎤</span><br><span class="line">⎢ ──   -5&#x2F;8  ────  0⎥</span><br><span class="line">⎢ 4           8     ⎥</span><br><span class="line">⎢                   ⎥</span><br><span class="line">⎢      3⋅√3         ⎥</span><br><span class="line">⎢3&#x2F;4   ────  1&#x2F;8   0⎥</span><br><span class="line">⎢       8           ⎥</span><br><span class="line">⎢                   ⎥</span><br><span class="line">⎢       √3          ⎥</span><br><span class="line">⎢-1&#x2F;2   ──   3&#x2F;4   0⎥</span><br><span class="line">⎢       4           ⎥</span><br><span class="line">⎢                   ⎥</span><br><span class="line">⎣ 0     0     0    1⎦</span><br><span class="line">----------------</span><br></pre></td></tr></table></figure>]]></content>
       
       
       <categories>
@@ -49,9 +49,9 @@
       
         <tags>
             
-            <tag> Python </tag>
-            
             <tag> Study </tag>
+            
+            <tag> Python </tag>
             
             <tag> AI </tag>
             
@@ -80,9 +80,9 @@
       
         <tags>
             
-            <tag> Python </tag>
-            
             <tag> Study </tag>
+            
+            <tag> Python </tag>
             
             <tag> algorithm </tag>
             
@@ -219,9 +219,9 @@
       
         <tags>
             
-            <tag> Python </tag>
-            
             <tag> Study </tag>
+            
+            <tag> Python </tag>
             
             <tag> Pygame </tag>
             
@@ -497,9 +497,9 @@
       
         <tags>
             
-            <tag> Python </tag>
-            
             <tag> Study </tag>
+            
+            <tag> Python </tag>
             
             <tag> algorithm </tag>
             
@@ -528,9 +528,9 @@
       
         <tags>
             
-            <tag> Python </tag>
-            
             <tag> Study </tag>
+            
+            <tag> Python </tag>
             
             <tag> algorithm </tag>
             
@@ -557,9 +557,9 @@
       
         <tags>
             
-            <tag> Python </tag>
-            
             <tag> Study </tag>
+            
+            <tag> Python </tag>
             
             <tag> DJango </tag>
             
@@ -588,9 +588,9 @@
       
         <tags>
             
-            <tag> Python </tag>
-            
             <tag> Study </tag>
+            
+            <tag> Python </tag>
             
             <tag> DJango </tag>
             
@@ -663,9 +663,9 @@
       
         <tags>
             
-            <tag> Python </tag>
-            
             <tag> Study </tag>
+            
+            <tag> Python </tag>
             
             <tag> Pytorch </tag>
             
@@ -696,9 +696,9 @@
       
         <tags>
             
-            <tag> Python </tag>
-            
             <tag> Study </tag>
+            
+            <tag> Python </tag>
             
             <tag> algorithm </tag>
             
@@ -725,9 +725,9 @@
       
         <tags>
             
-            <tag> Python </tag>
-            
             <tag> Study </tag>
+            
+            <tag> Python </tag>
             
             <tag> algorithm </tag>
             
@@ -754,9 +754,9 @@
       
         <tags>
             
-            <tag> Python </tag>
-            
             <tag> Study </tag>
+            
+            <tag> Python </tag>
             
             <tag> Data </tag>
             
@@ -785,9 +785,9 @@
       
         <tags>
             
-            <tag> Python </tag>
-            
             <tag> Study </tag>
+            
+            <tag> Python </tag>
             
             <tag> Data </tag>
             
@@ -816,9 +816,9 @@
       
         <tags>
             
-            <tag> Python </tag>
-            
             <tag> Study </tag>
+            
+            <tag> Python </tag>
             
             <tag> 爬虫 </tag>
             
@@ -845,9 +845,9 @@
       
         <tags>
             
-            <tag> Python </tag>
-            
             <tag> Study </tag>
+            
+            <tag> Python </tag>
             
         </tags>
       
